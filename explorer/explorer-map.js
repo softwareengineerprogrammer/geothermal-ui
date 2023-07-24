@@ -35,7 +35,7 @@ initMap().then(async () => {
 
     const {InfoWindow} = await google.maps.importLibrary("maps");
 
-    let dataFilePath = 'data/gtw-facility-analysis_2023-07-20-1689893839.csv'
+    let dataFilePath = 'data/gtw-facility-analysis_2023-07-24-1690233765.csv'
 
     $.get(dataFilePath, function (csv_data) {
         let facilities = $.csv.toObjects(csv_data).reverse()
@@ -119,6 +119,7 @@ initMap().then(async () => {
                 let facilityDisplay = Object.assign({}, facilityData)
                 delete facilityDisplay.facility_name
                 delete facilityDisplay.geophires_summary
+                delete facilityDisplay.position
                 let facilityId = facilityDisplay.facility_id
                 facilityDisplay.facility_id = `<a
                     href="https://ghgdata.epa.gov/ghgp/service/facilityDetail/2021?id=${facilityId}&ds=E&et=&popup=true"
@@ -143,12 +144,11 @@ initMap().then(async () => {
                     "Time steps per year": 6,
                     "Reservoir Depth": 3,
                     "Gradient 1": facilityData.gradient_degC_per_km,
-                    //"Maximum Temperature": facilityData.temp_3000m_degC
                     "Maximum Temperature": 400
                 })
 
                 let summaryTable = $('<table class="mui-table mui-table--bordered"></table>')
-                $(summaryTable).append($(`<thead><tr><th colspan='2'>PRE-COMPUTED FACILITY RESULTS</th></tr></thead>`))
+                $(summaryTable).append($(`<thead><tr><th colspan='2'>PRE-COMPUTED FACILITY RESULTS: ${facilityName}</th></tr></thead>`))
                 $(summaryTable).append(getTbody(facilityData.geophires_summary))
 
                 $('#results').empty()
