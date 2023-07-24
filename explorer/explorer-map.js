@@ -148,7 +148,7 @@ initMap().then(async () => {
                 })
 
                 let summaryTable = $('<table class="mui-table mui-table--bordered"></table>')
-                $(summaryTable).append($("<thead><tr><th colspan='2'>Summary of Results (Pre-Computed)</th></tr></thead>"))
+                $(summaryTable).append($("<thead><tr><th colspan='2'>SUMMARY OF RESULTS (Pre-Computed)</th></tr></thead>"))
                 $(summaryTable).append(getTbody(facilityData.geophires_summary))
 
                 $('#results').empty()
