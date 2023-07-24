@@ -2,6 +2,7 @@
 <html>
 <head>
     <base href="/geothermal/explorer/" target="_self">
+
     <title>Geothermal Direct-Use Heat Explorer</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     <script src="lib/jquery-3.7.0.min.js"></script>
@@ -23,7 +24,10 @@
 <div class="mui-container">
     <div class="mui-panel">
 
-        <h1 class="mui--text-title">Geothermal Direct-Use Heat Explorer</h1>
+        <h1 class="mui--text-title">
+            <span id="domain-breadcrumb" class="mui--text-dark-secondary"></span>
+            Geothermal Direct-Use Heat Explorer
+        </h1>
 
         <div class="mui--text-body1">
             <p>Click a facility on the map to see a pre-computed
@@ -60,11 +64,7 @@
                     </form>
                 </div>
                 <div class="mui-tabs__pane" id="pane-default-2">
-                    <form id="geophires_text_input_parameters">
-                        <!--                    <textarea rows="13"
-                                                      id="geophires_text_input_parameters"
-                                            ></textarea>-->
-                    </form>
+                    <form id="geophires_text_input_parameters"></form>
                 </div>
                 <div class="mui-tabs__pane" id="pane-default-3">
                     <form
