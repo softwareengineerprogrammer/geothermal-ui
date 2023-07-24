@@ -30,7 +30,11 @@ function getTbody(obj) {
             grayOut = ' class="null-value-row"'
         } else if (typeof v === 'object') {
             if('value' in v && 'unit' in v){
-             displayValue = `${v['value']} ${v['unit']}`
+             let unit_display = ` ${v['unit']}`.replace('degC','&#8451;')
+             if(v['unit'] === 'count'){
+                 unit_display = ''
+             }
+             displayValue = `${v['value']}${unit_display}`
             }else {
                 displayValue = `<table>${getTbody(v).outerHTML}</table>`
             }
