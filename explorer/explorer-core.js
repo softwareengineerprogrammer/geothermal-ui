@@ -13,7 +13,7 @@ function setLoading(isLoading) {
         (ta) => setInputEnabled(ta, !isLoading))
 }
 
-function renderGraph(resultsData) {
+function renderGenerationProfileGraphs(resultsData) {
     let powerGenerationProfile = resultsData['POWER GENERATION PROFILE']
     powerGenerationProfile[0].pop() // FIXME TEMP WIP
 
@@ -24,12 +24,17 @@ function renderGraph(resultsData) {
     powerGenerationProfileChart.draw(
         google.visualization.arrayToDataTable(powerGenerationProfile),
         {
-            title: 'Power Generation Profile',
+            title: 'POWER GENERATION PROFILE',
             curveType: 'function',
             legend: {position: 'bottom'},
             hAxis: {
                 title: 'Year'
+            },
+            series: {
+                // Gives each series an axis name that matches the Y-axis below.
+                0: {targetAxisIndex: 1}
             }
+
         }
     );
 
@@ -47,6 +52,10 @@ function renderGraph(resultsData) {
             legend: {position: 'bottom'},
             hAxis: {
                 title: 'Year'
+            },
+            series: {
+                // Gives each series an axis name that matches the Y-axis below.
+                3: {targetAxisIndex: 1}
             }
         }
     );
@@ -68,11 +77,23 @@ function submitForm(oFormElement) {
             resultsText = xhr.responseText
         }
 
-        //document.getElementById('results').innerText = resultsText
         let resultsTable = $('<table class="mui-table"></table>')
+
         let resultsData = JSON.parse(resultsText)
-        for (let resultsKey in resultsData) {
-            let resultsEntry = resultsData[resultsKey]
+
+        let powerProfileKey = 'POWER GENERATION PROFILE'
+        let extractionProfileKey = 'HEAT AND/OR ELECTRICITY EXTRACTION AND GENERATION PROFILE'
+        let profileData = {
+            powerProfileKey: resultsData[powerProfileKey],
+            extractionProfileKey: resultsData[extractionProfileKey]
+        }
+
+        let resultsDisplayData = Object.assign({}, resultsData)
+        delete resultsDisplayData[powerProfileKey]
+        delete resultsDisplayData[extractionProfileKey]
+
+        for (let resultsKey in resultsDisplayData) {
+            let resultsEntry = resultsDisplayData[resultsKey]
             $(resultsTable).append($(`<thead><tr><th colspan="2">${resultsKey}</th></tr></tr></thead>`))
             $(resultsTable).append(getTbody(resultsEntry))
         }
@@ -80,7 +101,7 @@ function submitForm(oFormElement) {
         $('#results').empty()
             .append(resultsTable)
 
-        renderGraph(resultsData)
+        renderGenerationProfileGraphs(resultsData)
     }
 
     xhr.onerror = function () {
@@ -114,28 +135,7 @@ function setFormInputParameters(inputParameterObj) {
 
 $(document).ready(function () {
     google.charts.load('current', {'packages': ['corechart']});
-
     // google.charts.setOnLoadCallback(drawChart);
-
-    function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-            ['Year', 'Sales', 'Expenses'],
-            ['2004', 1000, 400],
-            ['2005', 1170, 460],
-            ['2006', 660, 1120],
-            ['2007', 1030, 540]
-        ]);
-
-        var options = {
-            title: 'Company Performance',
-            curveType: 'function',
-            legend: {position: 'bottom'}
-        };
-
-        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
-
-        chart.draw(data, options);
-    }
 
     GUIDED_PARAMS_FORM = new GeophiresParametersForm(
         $('#geophires_param_form'),
