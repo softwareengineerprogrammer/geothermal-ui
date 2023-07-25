@@ -13,6 +13,54 @@ function setLoading(isLoading) {
         (ta) => setInputEnabled(ta, !isLoading))
 }
 
+function renderGenerationProfileGraphs(resultsData) {
+    let powerGenerationProfile = resultsData['POWER GENERATION PROFILE']
+
+    let powerGenerationProfileChart = new google.visualization.LineChart(
+        document.getElementById('power-generation-profile-chart')
+    );
+
+    powerGenerationProfileChart.draw(
+        google.visualization.arrayToDataTable(powerGenerationProfile),
+        {
+            title: 'POWER GENERATION PROFILE',
+            curveType: 'function',
+            legend: {position: 'bottom'},
+            hAxis: {
+                title: 'Year'
+            },
+            series: {
+                // Gives each series an axis name that matches the Y-axis below.
+                0: {targetAxisIndex: 1}
+            }
+
+        }
+    );
+
+
+    let heatElectricityExtractionGenerationProfile = resultsData['HEAT AND/OR ELECTRICITY EXTRACTION AND GENERATION PROFILE']
+    let heatElectricityExtractionGenerationProfileChart = new google.visualization.LineChart(
+        document.getElementById('heat-electricity-extraction-generation-profile-chart')
+    );
+
+    heatElectricityExtractionGenerationProfileChart.draw(
+        google.visualization.arrayToDataTable(heatElectricityExtractionGenerationProfile),
+        {
+            title: 'HEAT AND/OR ELECTRICITY EXTRACTION AND GENERATION PROFILE',
+            curveType: 'function',
+            legend: {position: 'bottom'},
+            hAxis: {
+                title: 'Year'
+            },
+            series: {
+                // Gives each series an axis name that matches the Y-axis below.
+                3: {targetAxisIndex: 1}
+            }
+        }
+    );
+
+}
+
 function submitForm(oFormElement) {
     let parsed_params = JSON.parse(oFormElement.querySelector('textarea[name="geophires_input_parameters"]').value)
 
@@ -28,18 +76,31 @@ function submitForm(oFormElement) {
             resultsText = xhr.responseText
         }
 
-        //document.getElementById('results').innerText = resultsText
         let resultsTable = $('<table class="mui-table"></table>')
+
         let resultsData = JSON.parse(resultsText)
-        for (let resultsKey in resultsData) {
-            let resultsEntry = resultsData[resultsKey]
+
+        let powerProfileKey = 'POWER GENERATION PROFILE'
+        let extractionProfileKey = 'HEAT AND/OR ELECTRICITY EXTRACTION AND GENERATION PROFILE'
+        let profileData = {
+            powerProfileKey: resultsData[powerProfileKey],
+            extractionProfileKey: resultsData[extractionProfileKey]
+        }
+
+        let resultsDisplayData = Object.assign({}, resultsData)
+        delete resultsDisplayData[powerProfileKey]
+        delete resultsDisplayData[extractionProfileKey]
+
+        for (let resultsKey in resultsDisplayData) {
+            let resultsEntry = resultsDisplayData[resultsKey]
             $(resultsTable).append($(`<thead><tr><th colspan="2">${resultsKey}</th></tr></tr></thead>`))
             $(resultsTable).append(getTbody(resultsEntry))
         }
-        //$(resultsTable).append(getTbody(resultsData))
 
         $('#results').empty()
             .append(resultsTable)
+
+        renderGenerationProfileGraphs(resultsData)
     }
 
     xhr.onerror = function () {
@@ -66,12 +127,15 @@ function submitForm(oFormElement) {
 let GUIDED_PARAMS_FORM = null
 let TEXT_INPUT_PARAMS_FORM = null
 
-function setFormInputParameters(inputParameterObj){
+function setFormInputParameters(inputParameterObj) {
     GUIDED_PARAMS_FORM.setInputParameters(inputParameterObj)
     TEXT_INPUT_PARAMS_FORM.setInputParameters(inputParameterObj)
 }
 
 $(document).ready(function () {
+    google.charts.load('current', {'packages': ['corechart']});
+    // google.charts.setOnLoadCallback(drawChart);
+
     GUIDED_PARAMS_FORM = new GeophiresParametersForm(
         $('#geophires_param_form'),
         function (params) {
@@ -106,7 +170,7 @@ $(document).ready(function () {
     console.log('URL hash is:', getUrlHash())
     let paramsFromHash = new URLSearchParams(getUrlHash()).get('geophires_input_parameters')
     console.log(`URL hash as search params: ${paramsFromHash}`)
-    if(paramsFromHash){
+    if (paramsFromHash) {
         defaultParams = JSON.parse(paramsFromHash)
     }
 

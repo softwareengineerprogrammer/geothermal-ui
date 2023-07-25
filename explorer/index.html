@@ -4,7 +4,7 @@
     <google-analytics-tag></google-analytics-tag>
 
     <!-- Comment out for development, uncomment for prod -->
-    <base href="/geothermal/explorer/" target="_self">
+    <!--<base href="/geothermal/explorer/" target="_self">-->
 
     <title>Geothermal Direct-Use Heat Explorer</title>
 
@@ -23,6 +23,11 @@
     <script type="module" src="explorer-map.js"></script>
     <script src="explorer-core.js"></script>
     <script src="geophires.js"></script>
+
+    <script src="lib/google-charts.loader.js"></script>
+
+
+
 
 </head>
 <body>
@@ -98,10 +103,15 @@
                 <div id="results">
                     Click a facility on the map to see its pre-computed GEOPHIRES result summary.
                 </div>
+                <div id="power-generation-profile-chart" style="width: 100%; height: 250px"></div>
+                <br/>
+                <div id="heat-electricity-extraction-generation-profile-chart" style="width: 100%; height: 250px"></div>
             </div>
         </div>
     </div>
 </div>
+
+
 <!-- prettier-ignore -->
 <script>(g => {
     var h, a, k, p = "The Google Maps JavaScript API", c = "google", l = "importLibrary", q = "__ib__", m = document,
