@@ -112,5 +112,5 @@ $(document).ready(function () {
 
     setFormInputParameters(defaultParams)
 
-    $('#domain-breadcrumb').html(`<a href="${location.origin}">${location.hostname}</a>&nbsp;&#62;`)
+    $('#domain-breadcrumb').html(`<a href="${location.origin}">${location.hostname}</a>`)
 })
