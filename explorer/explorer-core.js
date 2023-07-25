@@ -26,7 +26,10 @@ function renderGraph(resultsData) {
         {
             title: 'Power Generation Profile',
             curveType: 'function',
-            legend: {position: 'bottom'}
+            legend: {position: 'bottom'},
+            hAxis: {
+                title: 'Year'
+            }
         }
     );
 
@@ -41,7 +44,10 @@ function renderGraph(resultsData) {
         {
             title: 'HEAT AND/OR ELECTRICITY EXTRACTION AND GENERATION PROFILE',
             curveType: 'function',
-            legend: {position: 'bottom'}
+            legend: {position: 'bottom'},
+            hAxis: {
+                title: 'Year'
+            }
         }
     );
 
