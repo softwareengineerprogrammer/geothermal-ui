@@ -15,7 +15,6 @@ function setLoading(isLoading) {
 
 function renderGenerationProfileGraphs(resultsData) {
     let powerGenerationProfile = resultsData['POWER GENERATION PROFILE']
-    powerGenerationProfile[0].pop() // FIXME TEMP WIP
 
     let powerGenerationProfileChart = new google.visualization.LineChart(
         document.getElementById('power-generation-profile-chart')
