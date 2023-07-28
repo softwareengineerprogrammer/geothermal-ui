@@ -176,12 +176,17 @@ $(document).ready(function () {
         "Maximum Temperature": 400
     }
 
-    console.log('URL hash is:', getUrlHash())
-    let paramsFromHash = new URLSearchParams(getUrlHash()).get('geophires_input_parameters')
-    console.log(`URL hash as search params: ${paramsFromHash}`)
-    if (paramsFromHash) {
-        defaultParams = JSON.parse(paramsFromHash)
+    try {
+        console.log('URL hash is:', getUrlHash())
+        let paramsFromHash = new URLSearchParams(getUrlHash()).get('geophires_input_parameters')
+        console.log(`URL hash as search params: ${paramsFromHash}`)
+        if (paramsFromHash) {
+            defaultParams = JSON.parse(paramsFromHash)
+        }
+    } catch (error) {
+        console.log('Error loading params from URL hash:', error)
     }
+
 
     setFormInputParameters(defaultParams)
 })
