@@ -141,6 +141,8 @@ function setFormInputParameters(inputParameterObj) {
 }
 
 $(document).ready(function () {
+    $('#domain-breadcrumb').html(`<a href="${location.origin}">${location.hostname}</a>`)
+
     google.charts.load('current', {'packages': ['corechart']});
 
     GUIDED_PARAMS_FORM = new GeophiresParametersForm(
@@ -182,6 +184,4 @@ $(document).ready(function () {
     }
 
     setFormInputParameters(defaultParams)
-
-    $('#domain-breadcrumb').html(`<a href="${location.origin}">${location.hostname}</a>`)
 })
