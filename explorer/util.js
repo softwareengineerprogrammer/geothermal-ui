@@ -29,13 +29,13 @@ function getTbody(obj) {
             displayValue = 'null'
             grayOut = ' class="null-value-row"'
         } else if (typeof v === 'object') {
-            if('value' in v && 'unit' in v){
-             let unit_display = ` ${v['unit']}`.replace('degC','&#8451;')
-             if(v['unit'] === 'count'){
-                 unit_display = ''
-             }
-             displayValue = `${v['value']}${unit_display}`
-            }else {
+            if ('value' in v && 'unit' in v) {
+                let unit_display = ` ${v['unit']}`.replace('degC', '&#8451;')
+                if (v['unit'] === 'count') {
+                    unit_display = ''
+                }
+                displayValue = `${v['value']}${unit_display}`
+            } else {
                 displayValue = `<table>${getTbody(v).outerHTML}</table>`
             }
         }
@@ -45,11 +45,11 @@ function getTbody(obj) {
     return tbody
 }
 
-function parseIfNumber(maybeNumber){
+function parseIfNumber(maybeNumber) {
     let parsed = parseFloat(maybeNumber)
-    if(isNaN(parsed)){
+    if (isNaN(parsed)) {
         return maybeNumber
-    }else{
+    } else {
         return parsed
     }
 }
@@ -62,4 +62,12 @@ function setUrlHash(urlHash) {
     let url = new URL(location.href)
     url.hash = btoa(urlHash)
     location.href = url
+}
+
+function setVisible(elt, isVisible) {
+    if (isVisible) {
+        $(elt).removeClass('hidden')
+    } else {
+        $(elt).addClass('hidden')
+    }
 }

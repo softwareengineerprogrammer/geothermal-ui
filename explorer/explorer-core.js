@@ -1,9 +1,10 @@
 function setLoading(isLoading) {
     let loader = document.getElementById('loading')
     if (isLoading) {
-        loader.classList.remove('hidden')
+        setVisible(loader, true)
+        resetGenerationProfileGraphs()
     } else {
-        loader.classList.add('hidden')
+        setVisible(loader, false)
     }
 
     document.querySelectorAll('form input').forEach(
@@ -13,7 +14,14 @@ function setLoading(isLoading) {
         (ta) => setInputEnabled(ta, !isLoading))
 }
 
+
+function resetGenerationProfileGraphs() {
+    setVisible(document.getElementById('generation-profile-graphs'), false)
+}
+
 function renderGenerationProfileGraphs(resultsData) {
+    setVisible(document.getElementById('generation-profile-graphs'), true)
+
     let powerGenerationProfile = resultsData['POWER GENERATION PROFILE']
 
     let powerGenerationProfileChart = new google.visualization.LineChart(
@@ -134,7 +142,6 @@ function setFormInputParameters(inputParameterObj) {
 
 $(document).ready(function () {
     google.charts.load('current', {'packages': ['corechart']});
-    // google.charts.setOnLoadCallback(drawChart);
 
     GUIDED_PARAMS_FORM = new GeophiresParametersForm(
         $('#geophires_param_form'),

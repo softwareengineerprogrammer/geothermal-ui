@@ -154,6 +154,8 @@ initMap().then(async () => {
                 $('#results').empty()
                     .append(summaryTable)
                     //.append(infoTable.clone())
+
+                resetGenerationProfileGraphs()
             });
 
         }
