@@ -141,6 +141,11 @@ function setFormInputParameters(inputParameterObj) {
 }
 
 $(document).ready(function () {
+    /* break us out of any containing iframes */
+    if (top !== self) {
+        top.location.replace(self.location.href);
+    }
+
     $('#domain-breadcrumb').html(`<a href="${location.origin}">${location.hostname}</a>`)
 
     google.charts.load('current', {'packages': ['corechart']});
