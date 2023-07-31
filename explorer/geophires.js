@@ -64,20 +64,9 @@ class GeophiresParametersForm {
             </tr>
 
             <tr>
-                <td colspan="3">
-                    <legend style="margin: auto; text-decoration: underline;">
-                        Add Parameter:
-                    </legend>
-                </td>
-            </tr>
-            <tr>
-                <td>Name</td>
-                <td colspan="2">Value</td>
-            </tr>
-            <tr>
-                <td><input type="text" id="add_param_name"/></td>
-                <td><input type="text" id="add_param_value"/></td>
-                <td><button type="button" class="mui-btn" id="add_param_btn">Add</button></td>
+                <td><input type="text" id="add_param_name" placeholder="New Parameter Name"/></td>
+                <td><input type="text" id="add_param_value" placeholder="New Parameter Value"/></td>
+                <td><button type="button" class="mui-btn" id="add_param_btn">Add Parameter</button></td>
             </tr>`)
         elt.append(tbl)
 
