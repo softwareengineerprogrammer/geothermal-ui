@@ -42,12 +42,21 @@
         </h1>
 
         <div class="mui--text-body1">
-            <p>Click a facility on the map to see a pre-computed
-                GEOPHIRES<sup><a href="#about">&#8505;</a></sup> result.
-                Modify the parameters and re-run to get a new result.</p>
-            <p>Red markers indicate unit temperature plus 15&#8451; is available at 3000m. Saturation of blue
+            <p>
+                This tool shows potential applications for direct-use geothermal heat in the continental US based on estimated industrial heat demand and subsurface temperature.
+            </p>
+            <p>
+                Click a facility marker on the map for details including estimates of breakeven price, capex and opex,
+                calculated with GEOPHIRES<sup><a href="#about">&#8505;</a></sup>.
+                GEOPHIRES Parameters will be populated with the values used to pre-calculate the result for the facility;
+                you may modify them and click Run to get a new result.
+                You may also run GEOPHIRES with custom parameters without selecting a facility on the map.
+            </p>
+            <p>
+                Red markers indicate unit temperature plus 15&#8451; is available at 3000m. Saturation of blue
                 markers
-                indicates how close temps at 3000m are to unit temperature - darker blue = closer to unit temp</p>
+                indicates how close temps at 3000m are to unit temperature; darker blue = closer to unit temp
+            </p>
         </div>
     </div>
     <div class="mui-panel">
@@ -96,7 +105,7 @@
                 <h3>GEOPHIRES Result</h3>
                 <span id="loading" class="hidden">Running...</span>
                 <div id="results">
-                    Click a facility on the map to see its pre-computed GEOPHIRES result summary.
+                    Click a facility on the map to see its pre-calculated GEOPHIRES result summary.
                 </div>
                 <div id="generation-profile-graphs">
                     <div id="power-generation-profile-chart" style="width: 100%; height: 250px"></div>
@@ -112,7 +121,7 @@
 
         <ul>
             <li>
-                Geothermal Direct-Use Heat Explorer (this page)
+                Geothermal Direct-Use Heat Explorer (this tool)
                 by <a
                     data-b-innerText="Sm9uYXRoYW4gUGV6emlubw=="
                     data-b-href="aHR0cHM6Ly9qb25hdGhhbnBlenppbm8uY29tP3JlZj1nZW90aGVybWFsLWV4cGxvcmVy"
