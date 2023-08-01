@@ -192,6 +192,6 @@ $(document).ready(function () {
         console.log('Error loading params from URL hash:', error)
     }
 
-
     setFormInputParameters(defaultParams)
+    setAttributesFromDataProperties()
 })

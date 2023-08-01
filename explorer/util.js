@@ -71,3 +71,13 @@ function setVisible(elt, isVisible) {
         $(elt).addClass('hidden')
     }
 }
+
+function setAttributesFromDataProperties() {
+    $('*[data-b-innerText]').each(function (i) {
+        $(this).text(atob($(this).attr('data-b-innerText')))
+    })
+
+    $('*[data-b-href]').each(function (i) {
+        $(this).attr('href', atob($(this).attr('data-b-href')))
+    })
+}
