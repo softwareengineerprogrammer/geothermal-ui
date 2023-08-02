@@ -14,6 +14,10 @@ function setLoading(isLoading) {
         (ta) => setInputEnabled(ta, !isLoading))
 }
 
+function showError(msg) {
+    setLoading(false)
+    $('#results').html(`<span class="mui--text-danger">&#9888;${msg}</span>`)
+}
 
 function resetGenerationProfileGraphs() {
     setVisible(document.getElementById('generation-profile-graphs'), false)
@@ -79,7 +83,14 @@ function submitForm(oFormElement) {
 
         let resultsText = ''
         if (xhr.status !== 200) {
-            resultsText = `Error: ${xhr.statusText}`
+            let errorMsg = `${xhr.statusText}`
+            try {
+                errorMsg += ': ' + JSON.parse(xhr.responseText)['error']
+            } catch (e) {
+                console.warn('Unable to extract error from response body', xhr)
+            }
+            showError(errorMsg)
+            return
         } else {
             resultsText = xhr.responseText
         }
@@ -113,8 +124,7 @@ function submitForm(oFormElement) {
 
     xhr.onerror = function () {
         console.log('xhr onerror triggered', xhr)
-        setLoading(false)
-        $('#results').append($('<span>&#9888;Unexpected GEOPHIRES error - could be caused by invalid GEOPHIRES parameters, i.e. Maximum Temperature > 400</span>'))
+        showError('Unexpected GEOPHIRES error - could be caused by invalid GEOPHIRES parameters, i.e. Maximum Temperature > 400')
     }
 
     xhr.open(oFormElement.method, oFormElement.getAttribute("action"))
