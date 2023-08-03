@@ -1,7 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge, chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>GEOPHIRES Demo</title>
 
     <style>
         form {
@@ -83,10 +86,10 @@
         }
 
         function onReady() {
-            console.log('URL hash is: ' + getUrlHash())
+            console.log('URL hash is:', getUrlHash())
             let params_from_hash = new URLSearchParams(getUrlHash()).get('geophires_input_parameters')
             console.log(`URL hash as search params: ${params_from_hash}`)
-            if(params_from_hash){
+            if (params_from_hash) {
                 document.querySelector('textarea[name="geophires_input_parameters"]').value = JSON.stringify(JSON.parse(params_from_hash), null, 4)
             }
         }
@@ -95,7 +98,11 @@
 
 <body onload="onReady()">
 
-<h1>GEOPHIRES</h1>
+<h1>GEOPHIRES Demo</h1>
+<p>
+    See <a href="https://github.com/softwareengineerprogrammer/python-geophires-x">
+    softwareengineerprogrammer/python-geophires-x on GitHub</a>
+</p>
 
 <form method="POST"
       action="https://nmgmk2gu5b.execute-api.us-west-2.amazonaws.com/"
