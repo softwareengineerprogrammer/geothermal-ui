@@ -67,8 +67,7 @@ class GeophiresParametersForm {
 
             <tr>
             <td id="add_param_selector"></td>
-            <td id="selected_param_type"></td>
-            <td id="selected_param_description"></td>
+            <td id="selected_param_description" colspan="2"></td>
             </tr>
             <tr>
                 <td><input type="text" id="add_param_name" placeholder="New Parameter Name"/></td>
@@ -97,7 +96,6 @@ class GeophiresParametersForm {
             console.log('Got schema JSON:', data)
             this_._setParameterOptions(data)
         })
-
     }
 
     _setParameterOptions(schema) {
@@ -126,8 +124,10 @@ class GeophiresParametersForm {
             console.log('Add param selection', selectedParamName)
             $('#add_param_name').val(selectedParamName)
 
-            $('#selected_param_type').html(`<pre>${selectedParam['type']}</pre>`)
-            $('#selected_param_description').text(selectedParam['description'])
+            $('#selected_param_description').html(`
+                ${selectedParam['description']}
+                (<span style="font-family: monospace">${selectedParam['type']}</span>)
+            `)
         });
     }
 
