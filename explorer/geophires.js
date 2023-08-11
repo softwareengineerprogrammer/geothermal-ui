@@ -1,4 +1,6 @@
-"use strict";
+// noinspection JSJQueryEfficiency
+
+'use strict';
 
 class GeophiresParametersForm {
 
@@ -38,7 +40,7 @@ class GeophiresParametersForm {
         for (let paramName in inputParameters) {
             let paramData = inputParameters[paramName]
 
-            let removeButton = $(`<button type="button"  class="mui-btn mui-btn--small">Remove</button>`)
+            let removeButton = $(`<button type="button" class="mui-btn mui-btn--small">Remove</button>`)
             removeButton.on("click", function () {
                 this_._removeInputParameter(paramName)
             })
@@ -64,13 +66,18 @@ class GeophiresParametersForm {
             </tr>
 
             <tr>
+            <td id="add_param_selector"></td>
+            <td id="selected_param_type"></td>
+            <td id="selected_param_description"></td>
+            </tr>
+            <tr>
                 <td><input type="text" id="add_param_name" placeholder="New Parameter Name"/></td>
                 <td><input type="text" id="add_param_value" placeholder="New Parameter Value"/></td>
                 <td><button type="button" class="mui-btn" id="add_param_btn">Add Parameter</button></td>
             </tr>`)
         elt.append(tbl)
 
-        $("#add_param_btn").on('click', function () {
+        $('#add_param_btn').on('click', function () {
             if ($('#add_param_name').val()) {
                 this_.inputParameters[$('#add_param_name').val()] = $('#add_param_value').val()
                 this_.setInputParameters(this_.inputParameters)
@@ -85,6 +92,43 @@ class GeophiresParametersForm {
                            class="mui-btn mui-btn--primary mui-btn--raised" />
                             <div class="mui-divider" style="clear:both;"></div>
         `)
+
+        $.getJSON('geophires-request.json', function (data) {
+            console.log('Got schema JSON:', data)
+            this_._setParameterOptions(data)
+        })
+
+    }
+
+    _setParameterOptions(schema) {
+        let properties = schema['properties']
+
+        let options = ''
+        for (let propertyName in properties) {
+            let property = properties[propertyName]
+            property['name'] = propertyName
+            let propertyJson = JSON.stringify(property)
+            options += `<option value='${propertyJson}'>${propertyName}</option>`
+        }
+
+        $('#add_param_selector').append($(`
+              <div class="mui-select">
+                <select>
+                    ${options}
+                </select>
+                <label>Select Parameter</label>
+                </div>
+            `))
+
+        $('#add_param_selector select').on('change', function () {
+            let selectedParam = JSON.parse($(this).val())
+            let selectedParamName = selectedParam['name']
+            console.log('Add param selection', selectedParamName)
+            $('#add_param_name').val(selectedParamName)
+
+            $('#selected_param_type').html(`<pre>${selectedParam['type']}</pre>`)
+            $('#selected_param_description').text(selectedParam['description'])
+        });
     }
 
     _removeInputParameter(paramName) {
