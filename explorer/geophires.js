@@ -78,12 +78,12 @@ class GeophiresParametersForm {
                 <td>Type</td>
                 <td id="selected_param_type" colspan="2"></td>
             </tr>
-            <tr class="hidden">
-                <td>Unit</td>
+            <tr>
+                <td>Units</td>
                 <td id="selected_param_unit" colspan="2"></td>
             </tr>
             <tr>
-                <td>Description</td>
+                <td style="vertical-align: top;">Description</td>
                 <td id="selected_param_description" colspan="2"></td>
             </tr>
             <tr>
@@ -91,7 +91,7 @@ class GeophiresParametersForm {
                     Value
                 </td>
                 <td>
-                    <input type="text" id="add_param_value" placeholder="New Parameter Value"/>
+                    <input type="text" id="add_param_value" placeholder="Parameter Value"/>
                 </td>
                 <td>
                     <button type="button" class="mui-btn" id="add_param_btn">Add Parameter</button>
@@ -154,6 +154,13 @@ class GeophiresParametersForm {
             $('#selected_param_type').html(`
                 <span style="font-family: monospace">${selectedParam['type']}</span>
             `)
+
+            let unitElt = $('#selected_param_unit')
+            if(selectedParam['units'] !== null){
+                unitElt.text(selectedParam['units'])
+            }else{
+                unitElt.text('N/A')
+            }
         });
 
         $('#add_param_selector select').val($(`#add_param_selector select option`)
