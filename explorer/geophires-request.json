@@ -1,517 +1,514 @@
 {
-    "definitions":
-    {},
-    "$schema": "http://json-schema.org/draft-04/schema#",
-    "type": "object",
-    "title": "GEOPHIRES Schema",
-    "required":
-    [
-        "Reservoir Model",
-        "Reservoir Depth",
-        "Maximum Temperature",
-        "Number of Segments",
-        "Gradients",
-        "Gradient 1",
-        "Gradient 2",
-        "Gradient 3",
-        "Gradient 4",
-        "Reservoir Volume Option",
-        "Reservoir Heat Capacity",
-        "Reservoir Density",
-        "Surface Temperature",
-        "Number of Production Wells",
-        "Number of Injection Wells",
-        "Production Well Diameter",
-        "Injection Well Diameter",
-        "Ramey Production Wellbore Model",
-        "Injection Temperature",
-        "Circulation Pump Efficiency",
-        "Utilization Factor",
-        "Plant Lifetime",
-        "Economic Model",
-        "Time steps per year"
-    ],
-    "properties":
-    {
-        "Reservoir Model":
-        {
-            "description": "1: Multiple parallel fractures model, 2: 1D linear heat sweep model,  3: m/a single fracture drawdown model, 4: Linear thermal drawdown model, 5: Generic user-provided temperature profile, 6: TOUGH2",
-            "type": "integer"
-        },
-        "Reservoir Depth":
-        {
-            "description": "Depth of the reservoir",
-            "type": "number"
-        },
-        "Maximum Temperature":
-        {
-            "description": "Maximum allowable reservoir temperature (e.g. due to drill bit or logging tools constraints). GEOPHIRES will cap the drilling depth to stay below this maximum temperature.",
-            "type": "number"
-        },
-        "Number of Segments":
-        {
-            "description": "Number of rock segments from surface to reservoir depth with specific geothermal gradient",
-            "type": "integer"
-        },
-        "Gradients":
-        {
-            "description": "Geothermal gradients",
-            "type": "number"
-        },
-        "Gradient 1":
-        {
-            "description": "Geothermal gradient 1 in rock segment 1",
-            "type": "number"
-        },
-        "Gradient 2":
-        {
-            "description": "Geothermal gradient 2 in rock segment 2",
-            "type": "number"
-        },
-        "Gradient 3":
-        {
-            "description": "Geothermal gradient 3 in rock segment 3",
-            "type": "number"
-        },
-        "Gradient 4":
-        {
-            "description": "Geothermal gradient 4 in rock segment 4",
-            "type": "number"
-        },
-        "Thicknesses":
-        {
-            "description": "Thicknesses of rock segments",
-            "type": "array"
-        },
-        "Thickness 1":
-        {
-            "description": "Thickness of rock segment 1",
-            "type": "number"
-        },
-        "Thickness 2":
-        {
-            "description": "Thickness of rock segment 2",
-            "type": "number"
-        },
-        "Thickness 3":
-        {
-            "description": "Thickness of rock segment 3",
-            "type": "number"
-        },
-        "Thickness 4":
-        {
-            "description": "Thickness of rock segment 4",
-            "type": "number"
-        },
-        "Reservoir Volume Option":
-        {
-            "description": "Specifies how the reservoir volume, and fracture distribution (for reservoir models 1 and 2) are calculated. The reservoir volume is used by GEOPHIRES to estimate the stored heat in place. The fracture distribution is needed as input for the EGS fracture-based reservoir models 1 and 2: Specify number of fractures and fracture separation, 2: Specify reservoir volume and fracture separation, 3: Specify reservoir volume and number of fractures, 4: Specify reservoir volume only (sufficient for reservoir models 3, 4, 5 and 6)",
-            "type": "integer"
-        },
-        "Fracture Shape":
-        {
-            "description": "Specifies the shape of the (identical) fractures in a fracture-based reservoir: 1: Circular fracture with known area, 2: Circular fracture with known diameter, 3: Square fracture, 4: Rectangular fracture",
-            "type": "integer"
-        },
-        "Fracture Area":
-        {
-            "description": "Effective heat transfer area per fracture",
-            "type": "number"
-        },
-        "Fracture Height":
-        {
-            "description": "Diameter (if fracture shape = 2) or height (if fracture shape = 3 or 4) of each fracture",
-            "type": "number"
-        },
-        "Fracture Width":
-        {
-            "description": "Width of each fracture",
-            "type": "number"
-        },
-        "Number of Fractures":
-        {
-            "description": "Number of identical parallel fractures in EGS fracture-based reservoir model.",
-            "type": "integer"
-        },
-        "Fracture Separation":
-        {
-            "description": "Separation of identical parallel fractures with uniform spatial distribution in EGS fracture-based reservoir",
-            "type": "number"
-        },
-        "Reservoir Volume":
-        {
-            "description": "Geothermal reservoir volume",
-            "type": "number"
-        },
-        "Water Loss Fraction":
-        {
-            "description": "Fraction of water lost in the reservoir defined as (total geofluid lost)/(total geofluid produced).",
-            "type": "number"
-        },
-        "Reservoir Heat Capacity":
-        {
-            "description": "Constant and uniform reservoir rock heat capacity",
-            "type": "number"
-        },
-        "Reservoir Density":
-        {
-            "description": "Constant and uniform reservoir rock density",
-            "type": "number"
-        },
-        "Reservoir Thermal Conductivity":
-        {
-            "description": "Constant and uniform reservoir rock thermal conductivity",
-            "type": "number"
-        },
-        "Reservoir Permeability":
-        {
-            "description": "Constant and uniform reservoir permeability",
-            "type": "number"
-        },
-        "Reservoir Porosity":
-        {
-            "description": "Constant and uniform reservoir porosity",
-            "type": "number"
-        },
-        "Surface Temperature":
-        {
-            "description": "Surface temperature used for calculating bottom-hole temperature (with geothermal gradient and reservoir depth)",
-            "type": "number"
-        },
-        "Drawdown Parameter":
-        {
-            "description": "specify the thermal drawdown for reservoir model 3 and 4",
-            "type": "number"
-        },
-        "Number of Production Wells":
-        {
-            "description": "Number of (identical) production wells",
-            "type": "integer"
-        },
-        "Number of Injection Wells":
-        {
-            "description": "Number of (identical) injection wells",
-            "type": "integer"
-        },
-        "Production Well Diameter":
-        {
-            "description": "Inner diameter of production wellbore (assumed constant along the wellbore) to calculate frictional pressure drop and wellbore heat transmission with Rameys model",
-            "type": "number"
-        },
-        "Injection Well Diameter":
-        {
-            "description": "Inner diameter of production wellbore (assumed constant along the wellbore) to calculate frictional pressure drop and wellbore heat transmission with Rameys model",
-            "type": "number"
-        },
-        "Ramey Production Wellbore Model":
-        {
-            "description": "Select whether to use Rameys model to estimate the geofluid temperature drop in the production wells",
-            "type": "boolean"
-        },
-        "Production Wellbore Temperature Drop":
-        {
-            "description": "Specify constant production well geofluid temperature drop in case Rameys model is disabled.",
-            "type": "number"
-        },
-        "Injection Wellbore Temperature Gain":
-        {
-            "description": "Specify constant injection well geofluid temperature gain.",
-            "type": "number"
-        },
-        "Production Flow Rate per Well":
-        {
-            "description": "Geofluid flow rate per production well.",
-            "type": "number"
-        },
-        "Reservoir Impedance":
-        {
-            "description": "Reservoir resistance to flow per well-pair. For EGS-type reservoirs when the injection well is in hydraulic communication with the production well, this parameter specifies the overall pressure drop in the reservoir between injection well and production well (see docs)",
-            "type": "number"
-        },
-        "Well Separation":
-        {
-            "description": "Well separation for built-in TOUGH2 doublet reservoir model",
-            "type": "number"
-        },
-        "Injection Temperature":
-        {
-            "description": "Constant geofluid injection temperature at injection wellhead.",
-            "type": "number"
-        },
-        "Reservoir Hydrostatic Pressure":
-        {
-            "description": "Reservoir hydrostatic far-field pressure.  Default value is calculated with built-in modified Xie-Bloomfield-Shook equation (DOE, 2016).",
-            "type": "number"
-        },
-        "Production Wellhead Pressure":
-        {
-            "description": "Constant production wellhead pressure; Required if specifying productivity index",
-            "type": "number"
-        },
-        "Injectivity Index":
-        {
-            "description": "Injectivity index defined as ratio of injection well flow rate over injection well outflow pressure drop (flowing bottom hole pressure - hydrostatic reservoir pressure).",
-            "type": "number"
-        },
-        "Productivity Index":
-        {
-            "description": "Productivity index defined as ratio of production well flow rate over production well inflow pressure drop (see docs)",
-            "type": "number"
-        },
-        "Maximum Drawdown":
-        {
-            "description": "Maximum allowable thermal drawdown before redrilling of all wells into new reservoir (most applicable to EGS-type reservoirs with heat farming strategies). E.g. a value of 0.2 means that all wells are redrilled after the production temperature (at the wellhead) has dropped by 20% of its initial temperature",
-            "type": "number"
-        },
-        "Is AGS":
-        {
-            "description": "Set to true if the model is for an Advanced Geothermal System (AGS)",
-            "type": "boolean"
-        },
-        "End-Use Option":
-        {
-            "description": "Select the end-use application of the geofluid heat (see docs for details)",
-            "type": "integer"
-        },
-        "Power Plant Type":
-        {
-            "description": "Specify the type of power plant in case of electricity generation. 1: Subcritical ORC, 2: Supercritical ORC, 3: Single-flash, 4: Double-flash",
-            "type": "integer"
-        },
-        "Circulation Pump Efficiency":
-        {
-            "description": "Specify the overall efficiency of the injection and production well pumps",
-            "type": "number"
-        },
-        "Utilization Factor":
-        {
-            "description": "Ratio of the time the plant is running in normal production in a 1-year time period.",
-            "type": "number"
-        },
-        "End-Use Efficiency Factor":
-        {
-            "description": "Constant thermal efficiency of the direct-use application",
-            "type": "number"
-        },
-        "CHP Fraction":
-        {
-            "description": "Fraction of produced geofluid flow rate going to direct-use heat application in CHP parallel cycle",
-            "type": "number"
-        },
-        "CHP Bottoming Entering Temperature":
-        {
-            "description": "Power plant entering geofluid temperature used in CHP bottoming cycle",
-            "type": "number"
-        },
-        "Ambient Temperature":
-        {
-            "description": "Ambient (or dead-state) temperature used for calculating power plant utilization efficiency",
-            "type": "number"
-        },
-        "Plant Lifetime":
-        {
-            "description": "System lifetime",
-            "type": "integer"
-        },
-        "Surface Piping Length":
-        {
-            "description": "",
-            "type": "number"
-        },
-        "Plant Outlet Pressure":
-        {
-            "description": "Constant plant outlet pressure equal to injection well pump(s) suction pressure",
-            "type": "number"
-        },
-        "Electricity Rate":
-        {
-            "description": "Price of electricity to calculate pumping costs in direct-use heat only mode or revenue from electricity sales in CHP mode.",
-            "type": "number"
-        },
-        "Heat Rate":
-        {
-            "description": "Price of heat to calculate revenue from heat sales in CHP mode.",
-            "type": "number"
-        },
-        "Economic Model":
-        {
-            "description": "Specify the economic model to calculate the levelized cost of energy. 1: Fixed Charge Rate Model, 2: Standard Levelized Cost Model, 3: BICYCLE Levelized Cost Model, 4: CLGS",
-            "type": "integer"
-        },
-        "Reservoir Stimulation Capital Cost":
-        {
-            "description": "Total reservoir stimulation capital cost",
-            "type": "number"
-        },
-        "Reservoir Stimulation Capital Cost Adjustment Factor":
-        {
-            "description": "Multiplier for built-in reservoir stimulation capital cost correlation",
-            "type": "number"
-        },
-        "Exploration Capital Cost":
-        {
-            "description": "Total exploration capital cost",
-            "type": "number"
-        },
-        "Exploration Capital Cost Adjustment Factor":
-        {
-            "description": "Multiplier for built-in exploration capital cost correlation",
-            "type": "number"
-        },
-        "Well Drilling and Completion Capital Cost":
-        {
-            "description": "Well Drilling and Completion Capital Cost",
-            "type": "number"
-        },
-        "Well Drilling and Completion Capital Cost Adjustment Factor":
-        {
-            "description": "Well Drilling and Completion Capital Cost Adjustment Factor",
-            "type": "number"
-        },
-        "Wellfield O&M Cost":
-        {
-            "description": "Total annual wellfield O&M cost",
-            "type": "number"
-        },
-        "Wellfield O&M Cost Adjustment Factor":
-        {
-            "description": "Multiplier for built-in wellfield O&M cost correlation",
-            "type": "number"
-        },
-        "Surface Plant Capital Cost":
-        {
-            "description": "Total surface plant capital cost",
-            "type": "number"
-        },
-        "Surface Plant Capital Cost Adjustment Factor":
-        {
-            "description": "Multiplier for built-in surface plant capital cost correlation",
-            "type": "number"
-        },
-        "Field Gathering System Capital Cost":
-        {
-            "description": "Total field gathering system capital cost",
-            "type": "number"
-        },
-        "Field Gathering System Capital Cost Adjustment Factor":
-        {
-            "description": "Multiplier for built-in field gathering system capital cost correlation",
-            "type": "number"
-        },
-        "Surface Plant O&M Cost":
-        {
-            "description": "Total annual surface plant O&M cost",
-            "type": "number"
-        },
-        "Surface Plant O&M Cost Adjustment Factor":
-        {
-            "description": "Multiplier for built-in surface plant O&M cost correlation",
-            "type": "number"
-        },
-        "Water Cost":
-        {
-            "description": "Total annual make-up water cost",
-            "type": "number"
-        },
-        "Water Cost Adjustment Factor":
-        {
-            "description": "Multiplier for built-in make-up water cost correlation",
-            "type": "number"
-        },
-        "Total Capital Cost":
-        {
-            "description": "Total initial capital cost.",
-            "type": "number"
-        },
-        "Total O&M Cost":
-        {
-            "description": "Total initial O&M cost.",
-            "type": "number"
-        },
-        "Time steps per year":
-        {
-            "description": "Number of internal simulation time steps per year",
-            "type": "integer"
-        },
-        "Fixed Charge Rate":
-        {
-            "description": "Fixed charge rate (FCR) used in the Fixed Charge Rate Model",
-            "type": "number"
-        },
-        "Discount Rate":
-        {
-            "description": "Discount rate used in the Standard Levelized Cost Model",
-            "type": "number"
-        },
-        "Fraction of Investment in Bonds":
-        {
-            "description": "Fraction of geothermal project financing through bonds (see docs)",
-            "type": "number"
-        },
-        "Inflated Bond Interest Rate":
-        {
-            "description": "Inflated bond interest rate (see docs)",
-            "type": "number"
-        },
-        "Inflated Equity Interest Rate":
-        {
-            "description": "Inflated equity interest rate (see docs)",
-            "type": "number"
-        },
-        "Inflation Rate":
-        {
-            "description": "Inflation rate",
-            "type": "number"
-        },
-        "Combined Income Tax Rate":
-        {
-            "description": "Combined income tax rate (see docs)",
-            "type": "number"
-        },
-        "Gross Revenue Tax Rate":
-        {
-            "description": "Gross revenue tax rate (see docs)",
-            "type": "number"
-        },
-        "Investment Tax Credit Rate":
-        {
-            "description": "Investment tax credit rate (see docs)",
-            "type": "number"
-        },
-        "Property Tax Rate":
-        {
-            "description": "Property tax rate (see docs)",
-            "type": "number"
-        },
-        "Inflation Rate During Construction":
-        {
-            "description": "",
-            "type": "number"
-        },
-        "Well Drilling Cost Correlation":
-        {
-            "description": "Select the built-in horizontal well drilling and completion cost correlation. 1: vertical open-hole, small diameter; 2: deviated liner, small diameter; 3: vertical open-hole, large diameter; 4: deviated liner, large diameter; 5: Simple - user specified cost per meter",
-            "type": "integer"
-        },
-        "Do AddOn Calculations":
-        {
-            "description": "Set to true if you want the add-on economics calculations to be made",
-            "type": "boolean"
-        },
-        "Do CCUS Calculations":
-        {
-            "description": "Set to true if you want the CCUS economics calculations to be made",
-            "type": "boolean"
-        },
-        "All-in Vertical Drilling Costs":
-        {
-            "description": "Set user specified all-in cost per meter of vertical drilling, including drilling, casing, cement, insulated insert",
-            "type": "number"
-        },
-        "All-in Nonvertical Drilling Costs":
-        {
-            "description": "Set user specified all-in cost per meter of non-vertical drilling, including drilling, casing, cement, insulated insert",
-            "type": "number"
-        }
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "title": "GEOPHIRES Schema",
+  "required": [
+    "Reservoir Model",
+    "Reservoir Depth",
+    "Maximum Temperature",
+    "Number of Segments",
+    "Gradients",
+    "Gradient 1",
+    "Gradient 2",
+    "Gradient 3",
+    "Gradient 4",
+    "Reservoir Volume Option",
+    "Reservoir Heat Capacity",
+    "Reservoir Density",
+    "Surface Temperature",
+    "Number of Production Wells",
+    "Number of Injection Wells",
+    "Production Well Diameter",
+    "Injection Well Diameter",
+    "Ramey Production Wellbore Model",
+    "Injection Temperature",
+    "Circulation Pump Efficiency",
+    "Utilization Factor",
+    "Plant Lifetime",
+    "Economic Model",
+    "Time steps per year"
+  ],
+  "properties": {
+    "Reservoir Model": {
+      "description": "1: Multiple parallel fractures model, 2: 1D linear heat sweep model,  3: m/a single fracture drawdown model, 4: Linear thermal drawdown model, 5: Generic user-provided temperature profile, 6: TOUGH2",
+      "type": "integer",
+      "units": null
+    },
+    "Reservoir Depth": {
+      "description": "Depth of the reservoir",
+      "type": "number",
+      "units": "kilometer"
+    },
+    "Maximum Temperature": {
+      "description": "Maximum allowable reservoir temperature (e.g. due to drill bit or logging tools constraints). GEOPHIRES will cap the drilling depth to stay below this maximum temperature.",
+      "type": "number",
+      "units": "degC"
+    },
+    "Number of Segments": {
+      "description": "Number of rock segments from surface to reservoir depth with specific geothermal gradient",
+      "type": "integer",
+      "units": null
+    },
+    "Gradients": {
+      "description": "Geothermal gradients",
+      "type": "number",
+      "units": "degC/km"
+    },
+    "Gradient 1": {
+      "description": "Geothermal gradient 1 in rock segment 1",
+      "type": "number",
+      "units": "degC/km"
+    },
+    "Gradient 2": {
+      "description": "Geothermal gradient 2 in rock segment 2",
+      "type": "number",
+      "units": "degC/km"
+    },
+    "Gradient 3": {
+      "description": "Geothermal gradient 3 in rock segment 3",
+      "type": "number",
+      "units": "degC/km"
+    },
+    "Gradient 4": {
+      "description": "Geothermal gradient 4 in rock segment 4",
+      "type": "number",
+      "units": "degC/km"
+    },
+    "Thicknesses": {
+      "description": "Thicknesses of rock segments",
+      "type": "array",
+      "units": "kilometer"
+    },
+    "Thickness 1": {
+      "description": "Thickness of rock segment 1",
+      "type": "number",
+      "units": "kilometer"
+    },
+    "Thickness 2": {
+      "description": "Thickness of rock segment 2",
+      "type": "number",
+      "units": "kilometer"
+    },
+    "Thickness 3": {
+      "description": "Thickness of rock segment 3",
+      "type": "number",
+      "units": "kilometer"
+    },
+    "Thickness 4": {
+      "description": "Thickness of rock segment 4",
+      "type": "number",
+      "units": "kilometer"
+    },
+    "Reservoir Volume Option": {
+      "description": "Specifies how the reservoir volume, and fracture distribution (for reservoir models 1 and 2) are calculated. The reservoir volume is used by GEOPHIRES to estimate the stored heat in place. The fracture distribution is needed as input for the EGS fracture-based reservoir models 1 and 2: Specify number of fractures and fracture separation, 2: Specify reservoir volume and fracture separation, 3: Specify reservoir volume and number of fractures, 4: Specify reservoir volume only (sufficient for reservoir models 3, 4, 5 and 6)",
+      "type": "integer",
+      "units": null
+    },
+    "Fracture Shape": {
+      "description": "Specifies the shape of the (identical) fractures in a fracture-based reservoir: 1: Circular fracture with known area, 2: Circular fracture with known diameter, 3: Square fracture, 4: Rectangular fracture",
+      "type": "integer",
+      "units": null
+    },
+    "Fracture Area": {
+      "description": "Effective heat transfer area per fracture",
+      "type": "number",
+      "units": "m**2"
+    },
+    "Fracture Height": {
+      "description": "Diameter (if fracture shape = 2) or height (if fracture shape = 3 or 4) of each fracture",
+      "type": "number",
+      "units": "meter"
+    },
+    "Fracture Width": {
+      "description": "Width of each fracture",
+      "type": "number",
+      "units": "meter"
+    },
+    "Number of Fractures": {
+      "description": "Number of identical parallel fractures in EGS fracture-based reservoir model.",
+      "type": "integer",
+      "units": null
+    },
+    "Fracture Separation": {
+      "description": "Separation of identical parallel fractures with uniform spatial distribution in EGS fracture-based reservoir",
+      "type": "number",
+      "units": "meter"
+    },
+    "Reservoir Volume": {
+      "description": "Geothermal reservoir volume",
+      "type": "number",
+      "units": "m**3"
+    },
+    "Water Loss Fraction": {
+      "description": "Fraction of water lost in the reservoir defined as (total geofluid lost)/(total geofluid produced).",
+      "type": "number",
+      "units": ""
+    },
+    "Reservoir Heat Capacity": {
+      "description": "Constant and uniform reservoir rock heat capacity",
+      "type": "number",
+      "units": "J/kg/kelvin"
+    },
+    "Reservoir Density": {
+      "description": "Constant and uniform reservoir rock density",
+      "type": "number",
+      "units": "kg/m**3"
+    },
+    "Reservoir Thermal Conductivity": {
+      "description": "Constant and uniform reservoir rock thermal conductivity",
+      "type": "number",
+      "units": "watt/m/kelvin"
+    },
+    "Reservoir Permeability": {
+      "description": "Constant and uniform reservoir permeability",
+      "type": "number",
+      "units": "m**2"
+    },
+    "Reservoir Porosity": {
+      "description": "Constant and uniform reservoir porosity",
+      "type": "number",
+      "units": ""
+    },
+    "Surface Temperature": {
+      "description": "Surface temperature used for calculating bottom-hole temperature (with geothermal gradient and reservoir depth)",
+      "type": "number",
+      "units": "degC"
+    },
+    "Drawdown Parameter": {
+      "description": "specify the thermal drawdown for reservoir model 3 and 4",
+      "type": "number",
+      "units": "1/year"
+    },
+    "Number of Production Wells": {
+      "description": "Number of (identical) production wells",
+      "type": "integer",
+      "units": null
+    },
+    "Number of Injection Wells": {
+      "description": "Number of (identical) injection wells",
+      "type": "integer",
+      "units": null
+    },
+    "Production Well Diameter": {
+      "description": "Inner diameter of production wellbore (assumed constant along the wellbore) to calculate frictional pressure drop and wellbore heat transmission with Rameys model",
+      "type": "number",
+      "units": "in"
+    },
+    "Injection Well Diameter": {
+      "description": "Inner diameter of production wellbore (assumed constant along the wellbore) to calculate frictional pressure drop and wellbore heat transmission with Rameys model",
+      "type": "number",
+      "units": "in"
+    },
+    "Ramey Production Wellbore Model": {
+      "description": "Select whether to use Rameys model to estimate the geofluid temperature drop in the production wells",
+      "type": "boolean",
+      "units": null
+    },
+    "Production Wellbore Temperature Drop": {
+      "description": "Specify constant production well geofluid temperature drop in case Rameys model is disabled.",
+      "type": "number",
+      "units": "degC"
+    },
+    "Injection Wellbore Temperature Gain": {
+      "description": "Specify constant injection well geofluid temperature gain.",
+      "type": "number",
+      "units": "degC"
+    },
+    "Production Flow Rate per Well": {
+      "description": "Geofluid flow rate per production well.",
+      "type": "number",
+      "units": "kg/sec"
+    },
+    "Reservoir Impedance": {
+      "description": "Reservoir resistance to flow per well-pair. For EGS-type reservoirs when the injection well is in hydraulic communication with the production well, this parameter specifies the overall pressure drop in the reservoir between injection well and production well (see docs)",
+      "type": "number",
+      "units": "GPa.s/m**3"
+    },
+    "Well Separation": {
+      "description": "Well separation for built-in TOUGH2 doublet reservoir model",
+      "type": "number",
+      "units": "in"
+    },
+    "Injection Temperature": {
+      "description": "Constant geofluid injection temperature at injection wellhead.",
+      "type": "number",
+      "units": "degC"
+    },
+    "Reservoir Hydrostatic Pressure": {
+      "description": "Reservoir hydrostatic far-field pressure.  Default value is calculated with built-in modified Xie-Bloomfield-Shook equation (DOE, 2016).",
+      "type": "number",
+      "units": "kPa"
+    },
+    "Production Wellhead Pressure": {
+      "description": "Constant production wellhead pressure; Required if specifying productivity index",
+      "type": "number",
+      "units": "kPa"
+    },
+    "Injectivity Index": {
+      "description": "Injectivity index defined as ratio of injection well flow rate over injection well outflow pressure drop (flowing bottom hole pressure - hydrostatic reservoir pressure).",
+      "type": "number",
+      "units": "kg/sec/bar"
+    },
+    "Productivity Index": {
+      "description": "Productivity index defined as ratio of production well flow rate over production well inflow pressure drop (see docs)",
+      "type": "number",
+      "units": "kg/sec/bar"
+    },
+    "Maximum Drawdown": {
+      "description": "Maximum allowable thermal drawdown before redrilling of all wells into new reservoir (most applicable to EGS-type reservoirs with heat farming strategies). E.g. a value of 0.2 means that all wells are redrilled after the production temperature (at the wellhead) has dropped by 20% of its initial temperature",
+      "type": "number",
+      "units": ""
+    },
+    "Is AGS": {
+      "description": "Set to true if the model is for an Advanced Geothermal System (AGS)",
+      "type": "boolean",
+      "units": null
+    },
+    "End-Use Option": {
+      "description": "Select the end-use application of the geofluid heat (see docs for details)",
+      "type": "integer",
+      "units": null
+    },
+    "Power Plant Type": {
+      "description": "Specify the type of power plant in case of electricity generation. 1: Subcritical ORC, 2: Supercritical ORC, 3: Single-flash, 4: Double-flash",
+      "type": "integer",
+      "units": null
+    },
+    "Circulation Pump Efficiency": {
+      "description": "Specify the overall efficiency of the injection and production well pumps",
+      "type": "number",
+      "units": ""
+    },
+    "Utilization Factor": {
+      "description": "Ratio of the time the plant is running in normal production in a 1-year time period.",
+      "type": "number",
+      "units": ""
+    },
+    "End-Use Efficiency Factor": {
+      "description": "Constant thermal efficiency of the direct-use application",
+      "type": "number",
+      "units": ""
+    },
+    "CHP Fraction": {
+      "description": "Fraction of produced geofluid flow rate going to direct-use heat application in CHP parallel cycle",
+      "type": "number",
+      "units": ""
+    },
+    "CHP Bottoming Entering Temperature": {
+      "description": "Power plant entering geofluid temperature used in CHP bottoming cycle",
+      "type": "number",
+      "units": "degC"
+    },
+    "Ambient Temperature": {
+      "description": "Ambient (or dead-state) temperature used for calculating power plant utilization efficiency",
+      "type": "number",
+      "units": "degC"
+    },
+    "Plant Lifetime": {
+      "description": "System lifetime",
+      "type": "integer",
+      "units": "yr"
+    },
+    "Surface Piping Length": {
+      "description": "",
+      "type": "number",
+      "units": "kilometer"
+    },
+    "Plant Outlet Pressure": {
+      "description": "Constant plant outlet pressure equal to injection well pump(s) suction pressure",
+      "type": "number",
+      "units": "kPa"
+    },
+    "Electricity Rate": {
+      "description": "Price of electricity to calculate pumping costs in direct-use heat only mode or revenue from electricity sales in CHP mode.",
+      "type": "number",
+      "units": "USD/kWh"
+    },
+    "Heat Rate": {
+      "description": "Price of heat to calculate revenue from heat sales in CHP mode.",
+      "type": "number",
+      "units": "USD/kWh"
+    },
+    "Economic Model": {
+      "description": "Specify the economic model to calculate the levelized cost of energy. 1: Fixed Charge Rate Model, 2: Standard Levelized Cost Model, 3: BICYCLE Levelized Cost Model, 4: CLGS",
+      "type": "integer",
+      "units": null
+    },
+    "Reservoir Stimulation Capital Cost": {
+      "description": "Total reservoir stimulation capital cost",
+      "type": "number",
+      "units": "MUSD"
+    },
+    "Reservoir Stimulation Capital Cost Adjustment Factor": {
+      "description": "Multiplier for built-in reservoir stimulation capital cost correlation",
+      "type": "number",
+      "units": ""
+    },
+    "Exploration Capital Cost": {
+      "description": "Total exploration capital cost",
+      "type": "number",
+      "units": "MUSD"
+    },
+    "Exploration Capital Cost Adjustment Factor": {
+      "description": "Multiplier for built-in exploration capital cost correlation",
+      "type": "number",
+      "units": ""
+    },
+    "Well Drilling and Completion Capital Cost": {
+      "description": "Well Drilling and Completion Capital Cost",
+      "type": "number",
+      "units": "MUSD"
+    },
+    "Well Drilling and Completion Capital Cost Adjustment Factor": {
+      "description": "Well Drilling and Completion Capital Cost Adjustment Factor",
+      "type": "number",
+      "units": ""
+    },
+    "Wellfield O&M Cost": {
+      "description": "Total annual wellfield O&M cost",
+      "type": "number",
+      "units": "MUSD/yr"
+    },
+    "Wellfield O&M Cost Adjustment Factor": {
+      "description": "Multiplier for built-in wellfield O&M cost correlation",
+      "type": "number",
+      "units": ""
+    },
+    "Surface Plant Capital Cost": {
+      "description": "Total surface plant capital cost",
+      "type": "number",
+      "units": "MUSD"
+    },
+    "Surface Plant Capital Cost Adjustment Factor": {
+      "description": "Multiplier for built-in surface plant capital cost correlation",
+      "type": "number",
+      "units": ""
+    },
+    "Field Gathering System Capital Cost": {
+      "description": "Total field gathering system capital cost",
+      "type": "number",
+      "units": "MUSD"
+    },
+    "Field Gathering System Capital Cost Adjustment Factor": {
+      "description": "Multiplier for built-in field gathering system capital cost correlation",
+      "type": "number",
+      "units": ""
+    },
+    "Surface Plant O&M Cost": {
+      "description": "Total annual surface plant O&M cost",
+      "type": "number",
+      "units": "MUSD/yr"
+    },
+    "Surface Plant O&M Cost Adjustment Factor": {
+      "description": "Multiplier for built-in surface plant O&M cost correlation",
+      "type": "number",
+      "units": ""
+    },
+    "Water Cost": {
+      "description": "Total annual make-up water cost",
+      "type": "number",
+      "units": "MUSD/yr"
+    },
+    "Water Cost Adjustment Factor": {
+      "description": "Multiplier for built-in make-up water cost correlation",
+      "type": "number",
+      "units": ""
+    },
+    "Total Capital Cost": {
+      "description": "Total initial capital cost.",
+      "type": "number",
+      "units": "MUSD"
+    },
+    "Total O&M Cost": {
+      "description": "Total initial O&M cost.",
+      "type": "number",
+      "units": "MUSD/yr"
+    },
+    "Time steps per year": {
+      "description": "Number of internal simulation time steps per year",
+      "type": "integer",
+      "units": null
+    },
+    "Fixed Charge Rate": {
+      "description": "Fixed charge rate (FCR) used in the Fixed Charge Rate Model",
+      "type": "number",
+      "units": ""
+    },
+    "Discount Rate": {
+      "description": "Discount rate used in the Standard Levelized Cost Model",
+      "type": "number",
+      "units": ""
+    },
+    "Fraction of Investment in Bonds": {
+      "description": "Fraction of geothermal project financing through bonds (see docs)",
+      "type": "number",
+      "units": ""
+    },
+    "Inflated Bond Interest Rate": {
+      "description": "Inflated bond interest rate (see docs)",
+      "type": "number",
+      "units": ""
+    },
+    "Inflated Equity Interest Rate": {
+      "description": "Inflated equity interest rate (see docs)",
+      "type": "number",
+      "units": ""
+    },
+    "Inflation Rate": {
+      "description": "Inflation rate",
+      "type": "number",
+      "units": ""
+    },
+    "Combined Income Tax Rate": {
+      "description": "Combined income tax rate (see docs)",
+      "type": "number",
+      "units": ""
+    },
+    "Gross Revenue Tax Rate": {
+      "description": "Gross revenue tax rate (see docs)",
+      "type": "number",
+      "units": ""
+    },
+    "Investment Tax Credit Rate": {
+      "description": "Investment tax credit rate (see docs)",
+      "type": "number",
+      "units": ""
+    },
+    "Property Tax Rate": {
+      "description": "Property tax rate (see docs)",
+      "type": "number",
+      "units": ""
+    },
+    "Inflation Rate During Construction": {
+      "description": "",
+      "type": "number",
+      "units": ""
+    },
+    "Well Drilling Cost Correlation": {
+      "description": "Select the built-in horizontal well drilling and completion cost correlation. 1: vertical open-hole, small diameter; 2: deviated liner, small diameter; 3: vertical open-hole, large diameter; 4: deviated liner, large diameter; 5: Simple - user specified cost per meter",
+      "type": "integer",
+      "units": null
+    },
+    "Do AddOn Calculations": {
+      "description": "Set to true if you want the add-on economics calculations to be made",
+      "type": "boolean",
+      "units": null
+    },
+    "Do CCUS Calculations": {
+      "description": "Set to true if you want the CCUS economics calculations to be made",
+      "type": "boolean",
+      "units": null
+    },
+    "All-in Vertical Drilling Costs": {
+      "description": "Set user specified all-in cost per meter of vertical drilling, including drilling, casing, cement, insulated insert",
+      "type": "number",
+      "units": "USD/m"
+    },
+    "All-in Nonvertical Drilling Costs": {
+      "description": "Set user specified all-in cost per meter of non-vertical drilling, including drilling, casing, cement, insulated insert",
+      "type": "number",
+      "units": "USD/m"
     }
+  }
 }

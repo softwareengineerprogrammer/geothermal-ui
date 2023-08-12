@@ -35,14 +35,14 @@ class GeophiresParametersForm {
         let elt = this._getElt()
         elt.empty()
 
-        let this_ = this
+        let _this = this
         let tbl = $('<table class="mui-table geophires-parameters"></table>')
         for (let paramName in inputParameters) {
             let paramData = inputParameters[paramName]
 
             let removeButton = $(`<button type="button" class="mui-btn mui-btn--small">Remove</button>`)
             removeButton.on("click", function () {
-                this_._removeInputParameter(paramName)
+                _this._removeInputParameter(paramName)
             })
             tbl.append($(`
                 <tr>
@@ -66,20 +66,43 @@ class GeophiresParametersForm {
             </tr>
 
             <tr>
-            <td id="add_param_selector"></td>
-            <td id="selected_param_description" colspan="2"></td>
+                <!--<td>Parameter</td>-->
+                <td id="add_param_selector" colspan="3">
+                    <input type="text"
+                        id="add_param_name"
+                        placeholder="New Parameter Name"
+                        class="hidden" />
+                </td>
             </tr>
             <tr>
-                <td><input type="text" id="add_param_name" placeholder="New Parameter Name"/></td>
-                <td><input type="text" id="add_param_value" placeholder="New Parameter Value"/></td>
-                <td><button type="button" class="mui-btn" id="add_param_btn">Add Parameter</button></td>
+                <td>Type</td>
+                <td id="selected_param_type" colspan="2"></td>
+            </tr>
+            <tr>
+                <td>Units</td>
+                <td id="selected_param_unit" colspan="2"></td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;">Description</td>
+                <td id="selected_param_description" colspan="2"></td>
+            </tr>
+            <tr>
+                <td>
+                    Value
+                </td>
+                <td>
+                    <input type="text" id="add_param_value" placeholder="Parameter Value"/>
+                </td>
+                <td>
+                    <button type="button" class="mui-btn" id="add_param_btn">Add Parameter</button>
+                </td>
             </tr>`)
         elt.append(tbl)
 
         $('#add_param_btn').on('click', function () {
             if ($('#add_param_name').val()) {
-                this_.inputParameters[$('#add_param_name').val()] = $('#add_param_value').val()
-                this_.setInputParameters(this_.inputParameters)
+                _this.inputParameters[$('#add_param_name').val()] = $('#add_param_value').val()
+                _this.setInputParameters(_this.inputParameters)
             }
         })
 
@@ -94,7 +117,7 @@ class GeophiresParametersForm {
 
         $.getJSON('geophires-request.json', function (data) {
             console.log('Got schema JSON:', data)
-            this_._setParameterOptions(data)
+            _this._setParameterOptions(data)
         })
     }
 
@@ -114,7 +137,7 @@ class GeophiresParametersForm {
                 <select>
                     ${options}
                 </select>
-                <label>Select Parameter</label>
+                <label>Choose Parameter</label>
                 </div>
             `))
 
@@ -124,11 +147,24 @@ class GeophiresParametersForm {
             console.log('Add param selection', selectedParamName)
             $('#add_param_name').val(selectedParamName)
 
-            $('#selected_param_description').html(`
+            $('#selected_param_description').text(`
                 ${selectedParam['description']}
-                (<span style="font-family: monospace">${selectedParam['type']}</span>)
             `)
+
+            $('#selected_param_type').html(`
+                <span style="font-family: monospace">${selectedParam['type']}</span>
+            `)
+
+            let unitElt = $('#selected_param_unit')
+            if(selectedParam['units'] !== null){
+                unitElt.text(selectedParam['units'])
+            }else{
+                unitElt.text('N/A')
+            }
         });
+
+        $('#add_param_selector select').val($(`#add_param_selector select option`)
+            .eq(Object.keys(properties).indexOf('Number of Fractures')).val()).change()
     }
 
     _removeInputParameter(paramName) {
