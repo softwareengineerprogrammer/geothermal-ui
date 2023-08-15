@@ -124,12 +124,22 @@ class GeophiresParametersForm {
     _setParameterOptions(schema) {
         let properties = schema['properties']
 
-        let options = ''
+        let optionGroups = {}
         for (let propertyName in properties) {
             let property = properties[propertyName]
             property['name'] = propertyName
             let propertyJson = JSON.stringify(property)
-            options += `<option value='${propertyJson}'>${propertyName}</option>`
+            let cat = property['category']
+            if (!(cat in optionGroups)){
+                optionGroups[cat] = ''
+            }
+            optionGroups[cat] += `<option value='${propertyJson}'>${propertyName}</option>\n`
+        }
+
+        let options = ''
+        for(let groupLabel in optionGroups){
+            let groupHtml = optionGroups[groupLabel]
+            options += `<optgroup label="${groupLabel}">${groupHtml}</optgroup>`
         }
 
         $('#add_param_selector').append($(`
