@@ -35,7 +35,7 @@ initMap().then(async () => {
 
     const {InfoWindow} = await google.maps.importLibrary("maps");
 
-    let dataFilePath = 'data/gtw-facility-analysis_2023-07-24-1690233765.csv'
+    let dataFilePath = 'data/gtw-facility-analysis_2023-08-15-1692117740.csv'
 
     $.get(dataFilePath, function (csv_data) {
         let facilities = $.csv.toObjects(csv_data).reverse()
