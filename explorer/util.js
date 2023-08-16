@@ -31,7 +31,7 @@ function getTbody(obj) {
         } else if (typeof v === 'object') {
             if ('value' in v && 'unit' in v) {
                 let unit_display = ` ${v['unit']}`.replace('degC', '&#8451;')
-                if (v['unit'] === 'count') {
+                if (v['unit'] === 'count' || v['unit'] === null) {
                     unit_display = ''
                 }
                 displayValue = `${v['value']}${unit_display}`
