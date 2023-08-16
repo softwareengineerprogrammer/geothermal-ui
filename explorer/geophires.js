@@ -47,26 +47,25 @@ class GeophiresParametersForm {
             tbl.append($(`
                 <tr>
                     <td>
-                        <label for="${paramName}">${paramName}</label>
+                        <label for="${paramName}">${paramName.replaceAll(' ','&nbsp;')}</label>
                     </td>
                     <td>
-                        <input type="text" name="${paramName}" value="${paramData}"/>
+                        <input size="8" type="text" name="${paramName}" value="${paramData}"/>
+                    </td>
+                    <td>
+                        <span class="geophires-unit" data-geophires-parameter-name="${paramName}"></span>
                     </td>
                 </tr>
             `).append($('<td>').append(removeButton)))
         }
 
-        tbl.append(`
-            <tr>
-                <td colspan="3">
-                    <br/>
-                    <div class="mui-divider"></div>
-                    <br/>
-                </td>
-            </tr>
+        elt.append(tbl)
 
+        elt.append($('<div class="mui-divider"></div>'))
+
+        let addParamTbl = $('<table class="mui-table geophires-parameters"></table>')
+        addParamTbl.append(`
             <tr>
-                <!--<td>Parameter</td>-->
                 <td id="add_param_selector" colspan="3">
                     <input type="text"
                         id="add_param_name"
@@ -90,7 +89,6 @@ class GeophiresParametersForm {
                     <button type="button" class="mui-btn" id="add_param_btn">Add Parameter</button>
                 </td>
             </tr>`)
-        elt.append(tbl)
 
         $('#add_param_btn').on('click', function () {
             if ($('#add_param_name').val()) {
@@ -98,6 +96,7 @@ class GeophiresParametersForm {
                 _this.setInputParameters(_this.inputParameters)
             }
         })
+        elt.append(addParamTbl)
 
         elt.append(`
                 <div class="mui-divider"></div>
@@ -127,6 +126,8 @@ class GeophiresParametersForm {
                 optionGroups[cat] = ''
             }
             optionGroups[cat] += `<option value='${propertyJson}'>${propertyName}</option>\n`
+
+            $(`.geophires-unit[data-geophires-parameter-name="${propertyName}"]`).text(property['units'])
         }
 
         let options = ''
