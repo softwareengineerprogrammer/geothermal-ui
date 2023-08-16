@@ -105,7 +105,6 @@ class GeophiresParametersForm {
                 <input type="submit"
                            value="Run GEOPHIRES"
                            class="mui-btn mui-btn--primary mui-btn--raised" />
-                            <div class="mui-divider" style="clear:both;"></div>
         `)
 
         $.getJSON('geophires-request.json', function (data) {
