@@ -75,14 +75,6 @@ class GeophiresParametersForm {
                 </td>
             </tr>
             <tr>
-                <td>Type</td>
-                <td id="selected_param_type" colspan="2"></td>
-            </tr>
-            <tr>
-                <td>Units</td>
-                <td id="selected_param_unit" colspan="2"></td>
-            </tr>
-            <tr>
                 <td style="vertical-align: top;">Description</td>
                 <td id="selected_param_description" colspan="2"></td>
             </tr>
@@ -93,6 +85,7 @@ class GeophiresParametersForm {
                 <td>
                     <input type="text" id="add_param_value" placeholder="Parameter Value"/>
                 </td>
+                <td id="selected_param_unit"></td>
                 <td>
                     <button type="button" class="mui-btn" id="add_param_btn">Add Parameter</button>
                 </td>
@@ -147,7 +140,7 @@ class GeophiresParametersForm {
                 <select>
                     ${options}
                 </select>
-                <label>Choose Parameter</label>
+                <label>Select Parameter to Add</label>
                 </div>
             `))
 
@@ -157,19 +150,16 @@ class GeophiresParametersForm {
             console.log('Add param selection', selectedParamName)
             $('#add_param_name').val(selectedParamName)
 
-            $('#selected_param_description').text(`
+            $('#selected_param_description').html(`
                 ${selectedParam['description']}
-            `)
-
-            $('#selected_param_type').html(`
-                <span style="font-family: monospace">${selectedParam['type']}</span>
+                (<span style="font-family: monospace">${selectedParam['type']}</span>)
             `)
 
             let unitElt = $('#selected_param_unit')
             if(selectedParam['units'] !== null){
                 unitElt.text(selectedParam['units'])
             }else{
-                unitElt.text('N/A')
+                unitElt.text('')
             }
         });
 
