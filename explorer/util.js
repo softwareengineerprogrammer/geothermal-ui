@@ -81,3 +81,11 @@ function setAttributesFromDataProperties() {
         $(this).attr('href', atob($(this).attr('data-b-href')))
     })
 }
+
+function nullToEmpty(str) {
+    if (str === null) {
+        return ''
+    } else {
+        return str
+    }
+}
