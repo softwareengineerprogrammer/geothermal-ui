@@ -90,13 +90,14 @@ class GeophiresParametersForm {
                 </td>
             </tr>`)
 
+        elt.append(addParamTbl)
+
         $('#add_param_btn').on('click', function () {
             if ($('#add_param_name').val()) {
                 _this.inputParameters[$('#add_param_name').val()] = $('#add_param_value').val()
                 _this.setInputParameters(_this.inputParameters)
             }
         })
-        elt.append(addParamTbl)
 
         elt.append(`
                 <div class="mui-divider"></div>
