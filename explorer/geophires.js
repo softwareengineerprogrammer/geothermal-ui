@@ -127,7 +127,8 @@ class GeophiresParametersForm {
             }
             optionGroups[cat] += `<option value='${propertyJson}'>${propertyName}</option>\n`
 
-            $(`.geophires-unit[data-geophires-parameter-name="${propertyName}"]`).html(nullToEmpty(property['units']).replace('degC', '&#8451;'))
+            $(`.geophires-unit[data-geophires-parameter-name="${propertyName}"]`)
+                .html(prettifyUnits(nullToEmpty(property['units'])))
         }
 
         let options = ''
@@ -157,11 +158,7 @@ class GeophiresParametersForm {
             `)
 
             let unitElt = $('#selected_param_unit')
-            if(selectedParam['units'] !== null){
-                unitElt.text(selectedParam['units'])
-            }else{
-                unitElt.text('')
-            }
+            unitElt.html(prettifyUnits(nullToEmpty(selectedParam['units'])))
         });
 
         $('#add_param_selector select').val($(`#add_param_selector select option`)

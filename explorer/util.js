@@ -30,7 +30,7 @@ function getTbody(obj) {
             grayOut = ' class="null-value-row"'
         } else if (typeof v === 'object') {
             if ('value' in v && 'unit' in v) {
-                let unit_display = ` ${v['unit']}`.replace('degC', '&#8451;')
+                let unit_display = ` ${prettifyUnits(v['unit'])}`
                 if (v['unit'] === 'count' || v['unit'] === null) {
                     unit_display = ''
                 }
@@ -88,4 +88,11 @@ function nullToEmpty(str) {
     } else {
         return str
     }
+}
+
+function prettifyUnits(unitStr) {
+    return nullToEmpty(unitStr)
+        .replace('degC', '&#8451;')
+        .replace('m**2', 'm&sup2;')
+        .replace('m**3', 'm&sup3;')
 }
