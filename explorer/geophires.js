@@ -66,7 +66,7 @@ class GeophiresParametersForm {
         let addParamTbl = $('<table class="mui-table geophires-parameters"></table>')
         addParamTbl.append(`
             <tr>
-                <td id="add_param_selector" colspan="3">
+                <td colspan="4">
                     <input type="text"
                         id="add_param_name"
                         placeholder="New Parameter Name"
@@ -74,12 +74,7 @@ class GeophiresParametersForm {
                 </td>
             </tr>
             <tr>
-                <td style="vertical-align: top;">Description:</td>
-                <td id="selected_param_description" colspan="2"></td>
-            </tr>
-            <tr>
-                <td>
-                    Value
+                <td id="add_param_selector" colspan="3" style="max-width: 300px; padding-right: 1em;">
                 </td>
                 <td>
                     <input type="text" id="add_param_value" placeholder="Parameter Value"/>
@@ -88,6 +83,10 @@ class GeophiresParametersForm {
                 <td>
                     <button type="button" class="mui-btn" id="add_param_btn" title="Add Parameter">Add</button>
                 </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;">Description:</td>
+                <td id="selected_param_description" colspan="2"></td>
             </tr>`)
 
         elt.append(addParamTbl)
