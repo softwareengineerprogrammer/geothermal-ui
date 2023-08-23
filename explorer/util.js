@@ -95,4 +95,5 @@ function prettifyUnits(unitStr) {
         .replace('degC', '&#8451;')
         .replace('m**2', 'm&sup2;')
         .replace('m**3', 'm&sup3;')
+        .replace('kilometer', 'km')
 }
