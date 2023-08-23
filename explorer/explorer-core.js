@@ -44,8 +44,14 @@ function renderGenerationProfileGraphs(resultsData) {
             series: {
                 // Gives each series an axis name that matches the Y-axis below.
                 0: {targetAxisIndex: 1}
-            }
+            },
 
+            // TODO generate vAxes programmatically from profiles instead of hardcoding
+            vAxes: {
+                // Adds titles to each axis.
+                0: {title: '\u2103; MW'},
+                1: {title: 'Drawdown'}
+            },
         }
     );
 
@@ -67,7 +73,12 @@ function renderGenerationProfileGraphs(resultsData) {
             series: {
                 // Gives each series an axis name that matches the Y-axis below.
                 3: {targetAxisIndex: 1}
-            }
+            },
+            vAxes: {
+                // Adds titles to each axis.
+                0: {title: 'GWh/year; 10^15 J'},
+                1: {title: 'Percent'}
+            },
         }
     );
 
@@ -101,10 +112,6 @@ function submitForm(oFormElement) {
 
         let powerProfileKey = 'POWER GENERATION PROFILE'
         let extractionProfileKey = 'HEAT AND/OR ELECTRICITY EXTRACTION AND GENERATION PROFILE'
-        let profileData = {
-            powerProfileKey: resultsData[powerProfileKey],
-            extractionProfileKey: resultsData[extractionProfileKey]
-        }
 
         let resultsDisplayData = Object.assign({}, resultsData)
         delete resultsDisplayData[powerProfileKey]
