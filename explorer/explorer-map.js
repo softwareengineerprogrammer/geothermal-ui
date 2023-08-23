@@ -137,14 +137,12 @@ initMap().then(async () => {
 
                 infoWindow.open(marker.map, marker);
 
-                setFormInputParameters(
-                    {
+                setFormInputParameters({
+                    "Gradient 1": facilityData.gradient_degC_per_km,
+                    "Reservoir Depth": 3,
                     "End-Use Option": 2,
                     "Reservoir Model": 1,
                     "Time steps per year": 6,
-                    "Reservoir Depth": 3,
-                    "Gradient 1": facilityData.gradient_degC_per_km,
-                    "Maximum Temperature": 400
                 })
 
                 let summaryTable = $('<table class="mui-table mui-table--bordered"></table>')

@@ -190,12 +190,11 @@ $(document).ready(function () {
 
 
     let defaultParams = {
+        "Gradient 1": 50,
+        "Reservoir Depth": 3,
         "End-Use Option": 2,
         "Reservoir Model": 1,
         "Time steps per year": 6,
-        "Reservoir Depth": 3,
-        "Gradient 1": 50,
-        "Maximum Temperature": 400
     }
 
     try {
