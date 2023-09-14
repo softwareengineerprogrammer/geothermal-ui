@@ -40,7 +40,7 @@ class GeophiresParametersForm {
         for (let paramName in inputParameters) {
             let paramData = inputParameters[paramName]
 
-            let removeButton = $(`<button type="button" class="mui-btn mui-btn--small" title="Remove Parameter">&#10060;</button>`)
+            let removeButton = $(`<button type="button" class="mui-btn mui-btn--small" title="Remove Parameter">&#10005;</button>`)
             removeButton.on("click", function () {
                 _this._removeInputParameter(paramName)
             })
