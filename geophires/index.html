@@ -1,131 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge, chrome=1"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>GEOPHIRES Demo</title>
+    <google-analytics-tag></google-analytics-tag>
 
-    <style>
-        form {
-            display: inline-block;
-            vertical-align: top;
-        }
+    <!-- Substituted in build -->
+    <geothermal-geophires-base-tag></geothermal-geophires-base-tag>
 
-        #results {
-            display: inline-block;
-        }
+    <title>GEOPHIRES</title>
 
-        .hidden {
-            visibility: hidden;
-        }
-    </style>
+    <!-- From >https://polyfill.io/v3/polyfill.min.js?features=default -->
+    <script src="lib/polyfill.min.js"></script>
 
-    <script>
-        "use strict";
+    <script src="lib/jquery-3.7.0.min.js"></script>
+    <script src="lib/jquery.csv.js"></script>
 
-        function setInputEnabled(inputElt, isEnabled) {
-            if (isEnabled) {
-                inputElt.removeAttribute('disabled')
-            } else {
-                inputElt.setAttribute('disabled', 'true')
-            }
-        }
+    <link href="lib/mui.min.css" rel="stylesheet" type="text/css"/>
+    <script src="lib/mui.min.js"></script>
 
-        function setLoading(isLoading) {
-            let loader = document.getElementById('loading')
-            if (isLoading) {
-                loader.classList.remove('hidden')
-            } else {
-                loader.classList.add('hidden')
-            }
+    <link href="explorer.css" rel="stylesheet" type="text/css"/>
 
-            setInputEnabled(document.querySelector('input[type="submit"]'), !isLoading)
-            setInputEnabled(document.querySelector('textarea'), !isLoading)
-        }
+    <script src="util.js"></script>
+    <script src="explorer-core.js"></script>
+    <script src="geophires.js"></script>
 
-        function submitForm(oFormElement) {
-            let xhr = new XMLHttpRequest();
-            xhr.onload = function () {
-                console.log('Got response', xhr.responseText, xhr)
-                setLoading(false)
+    <script src="lib/google-charts.loader.js"></script>
 
-                let resultsText = ''
-                if (xhr.status !== 200) {
-                    resultsText = 'Error: ' + xhr.statusText
-                } else {
-                    resultsText = xhr.responseText
-                }
-                document.getElementById('results').innerText = resultsText
-            }
 
-            let parsed_params = JSON.parse(oFormElement.querySelector('textarea[name="geophires_input_parameters"]').value)
-
-            xhr.open(oFormElement.method, oFormElement.getAttribute("action"))
-            xhr.send(JSON.stringify({
-                'geophires_input_parameters': parsed_params
-            }))
-
-            setLoading(true)
-
-            let hash_params = new URLSearchParams()
-            hash_params.set('geophires_input_parameters', JSON.stringify(parsed_params))
-            setUrlHash(hash_params.toString())
-
-            return false
-        }
-
-        function getUrlHash() {
-            return new URL(location.href).hash.replace('#', '')
-        }
-
-        function setUrlHash(urlHash) {
-            let url = new URL(location.href)
-            url.hash = urlHash
-            location.href = url
-        }
-
-        function onReady() {
-            console.log('URL hash is:', getUrlHash())
-            let params_from_hash = new URLSearchParams(getUrlHash()).get('geophires_input_parameters')
-            console.log(`URL hash as search params: ${params_from_hash}`)
-            if (params_from_hash) {
-                document.querySelector('textarea[name="geophires_input_parameters"]').value = JSON.stringify(JSON.parse(params_from_hash), null, 4)
-            }
-        }
-    </script>
 </head>
+<body>
 
-<body onload="onReady()">
+<div class="mui-container-fluid">
+    <div class="mui-panel">
 
-<h1>GEOPHIRES Demo</h1>
-<p>
-    See <a href="https://github.com/softwareengineerprogrammer/python-geophires-x">
-    softwareengineerprogrammer/python-geophires-x on GitHub</a>
-</p>
+        <h1 class="mui--text-title">
+            <span id="domain-breadcrumb"></span>
+            <div class="mui-divider"></div>
+            <br/>
 
-<form method="POST"
-      action="https://nmgmk2gu5b.execute-api.us-west-2.amazonaws.com/"
-      onsubmit="return submitForm(this);">
+            GEOPHIRES
+        </h1>
 
-    <textarea name="geophires_input_parameters"
-              cols="69"
-              rows="20">
-{
-    "End-Use Option": 2,
-    "Reservoir Model": 1,
-    "Time steps per year": 6,
-    "Reservoir Depth": 6,
-    "Gradient 1": 50,
-    "Maximum Temperature": 250
-  }
+        <div class="mui--text-body1">
+            <p>
+                Web interface for <a href='https://github.com/NREL/python-geophires-x'>github.com/NREL/python-geophires-x</a>
+            </p>
+        </div>
+    </div>
+    <div class="mui-panel">
 
-    </textarea>
-    <br/>
-    <input type="submit" value="Submit"/>
-    <span id="loading" class="hidden">Loading...</span>
-</form>
-<pre id="results"></pre>
+        <div id="geophires-ui" class="mui-row">
+            <div class="mui-col-lg-6">
+
+                <h3>GEOPHIRES Parameters</h3>
+
+                <ul class="mui-tabs__bar">
+                    <li class="mui--is-active"><a data-mui-toggle="tab" data-mui-controls="pane-default-1">Guided</a>
+                    </li>
+                    <li><a data-mui-toggle="tab" data-mui-controls="pane-default-2">Text</a></li>
+                    <li><a data-mui-toggle="tab" data-mui-controls="pane-default-3">JSON</a></li>
+                </ul>
+                <div class="mui-tabs__pane mui--is-active" id="pane-default-1">
+                    <form
+                            id="geophires_param_form"
+                            method="POST"
+                            action="https://nmgmk2gu5b.execute-api.us-west-2.amazonaws.com/">
+                    </form>
+                </div>
+                <div class="mui-tabs__pane" id="pane-default-2">
+                    <form id="geophires_text_input_parameters"></form>
+                </div>
+                <div class="mui-tabs__pane" id="pane-default-3">
+                    <form
+                            method="POST"
+                            onsubmit="return submitForm(this);"
+                            action="https://nmgmk2gu5b.execute-api.us-west-2.amazonaws.com/">
+                    <textarea id="geophires_input_parameters"
+                              name="geophires_input_parameters"
+                              class="mui-textfield"
+                              rows="13"
+                    ></textarea>
+                        <input type="submit"
+                               value="Run GEOPHIRES"
+                               class="mui-btn mui-btn--primary mui-btn--raised"/>
+                    </form>
+                </div>
+            </div>
+
+            <div id="results-container" class="mui-col-lg-6">
+                <h3>GEOPHIRES Result</h3>
+                <span id="loading" class="hidden loader">Running...</span>
+                <div id="results">
+
+                </div>
+                <div id="generation-profile-graphs">
+                    <div id="power-generation-profile-chart" style="width: 100%; height: 250px"></div>
+                    <br/>
+                    <div id="heat-electricity-extraction-generation-profile-chart"
+                         style="width: 100%; height: 250px"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mui-panel">
+        <h2><a id="about">About</a></h2>
+
+        <ul>
+            <li>
+                GEOPHIRES UI (this tool)
+                by <a
+                    data-b-innerText="Sm9uYXRoYW4gUGV6emlubw=="
+                    data-b-href="aHR0cHM6Ly9qb25hdGhhbnBlenppbm8uY29tP3JlZj1nZW90aGVybWFsLWV4cGxvcmVy"
+                    href="https://github.com/softwareengineerprogrammer">
+                softwareengineerprogrammer
+            </a>
+
+                (<a href="https://github.com/softwareengineerprogrammer">github.com/softwareengineerprogrammer</a>)
+
+            </li>
+            <li>
+                GEOPHIRES by
+                <a href="https://www.linkedin.com/in/malcolmiross/">Malcolm Ross</a>,
+                <a href="https://www.linkedin.com/in/koenraad-beckers-980a617/">Koenraad Beckers</a>:
+                <a href="https://github.com/softwareengineerprogrammer/python-geophires-x">forked</a>
+                from <a href="https://github.com/malcolm-dsider/GEOPHIRES-X">malcolm-dsider/GEOPHIRES-X</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
 </body>
 </html>
-
