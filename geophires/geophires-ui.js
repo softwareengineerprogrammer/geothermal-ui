@@ -183,7 +183,7 @@ function configureExampleSelector(){
         'example9.txt',
         'example10_HP.txt',
         'example11_AC.txt',
-        // 'Beckers_et_al_2023_Tabulated_Database_Uloop_sCO2_elec.txt',
+        'Beckers_et_al_2023_Tabulated_Database_Uloop_sCO2_elec.txt',
     ]
 
     for(let e in exampleFiles){
@@ -199,6 +199,12 @@ $(document).ready(function () {
     if (top !== self) {
         top.location.replace(self.location.href);
     }
+
+//    if(location.hostname.indexOf('localhost') != -1){
+//        const prodUrl = 'https://nmgmk2gu5b.execute-api.us-west-2.amazonaws.com/'
+//        const devUrl = 'https://d4nshmdoig.execute-api.us-west-2.amazonaws.com/'
+//        $('form.apiActionForm').attr('action',devUrl)
+//    }
 
     $('#domain-breadcrumb').html(`<a href="${location.origin}">${location.hostname}</a>`)
 
