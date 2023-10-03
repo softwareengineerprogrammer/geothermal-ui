@@ -65,22 +65,35 @@
                 <h3>Parameters</h3>
 
                 <ul class="mui-tabs__bar">
-                    <li class="mui--is-active"><a data-mui-toggle="tab" data-mui-controls="pane-default-1">Guided</a>
+                    <li><a data-mui-toggle="tab" data-mui-controls="pane-default-1">Examples</a>
                     </li>
-                    <li><a data-mui-toggle="tab" data-mui-controls="pane-default-2">Text</a></li>
-                    <li><a data-mui-toggle="tab" data-mui-controls="pane-default-3">JSON</a></li>
+                    <li class="mui--is-active"><a data-mui-toggle="tab" data-mui-controls="pane-default-2">Guided</a>
+                    </li>
+                    <li><a data-mui-toggle="tab" data-mui-controls="pane-default-3">Text</a></li>
+                    <li><a data-mui-toggle="tab" data-mui-controls="pane-default-4">JSON</a></li>
                 </ul>
-                <div class="mui-tabs__pane mui--is-active" id="pane-default-1">
+                <div class="mui-tabs__pane" id="pane-default-1">
+                    <br/>
+                    <div class="mui-select">
+                        <select id='examples-selector'>
+                        </select>
+                        <label>Select Example Input</label>
+                    </div>
+                    <button class="mui-btn mui-btn--primary mui-btn--raised" id="run-example-btn">
+                        Run Example
+                    </button>
+                </div>
+                <div class="mui-tabs__pane mui--is-active" id="pane-default-2">
                     <form
                             id="geophires_param_form"
                             method="POST"
                             action="https://nmgmk2gu5b.execute-api.us-west-2.amazonaws.com/">
                     </form>
                 </div>
-                <div class="mui-tabs__pane" id="pane-default-2">
+                <div class="mui-tabs__pane" id="pane-default-3">
                     <form id="geophires_text_input_parameters"></form>
                 </div>
-                <div class="mui-tabs__pane" id="pane-default-3">
+                <div class="mui-tabs__pane" id="pane-default-4">
                     <form
                             method="POST"
                             onsubmit="return submitForm(this);"

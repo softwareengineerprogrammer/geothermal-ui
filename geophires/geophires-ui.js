@@ -157,6 +157,43 @@ function setFormInputParameters(inputParameterObj) {
     TEXT_INPUT_PARAMS_FORM.setInputParameters(inputParameterObj)
 }
 
+function configureExampleSelector(){
+    $('#run-example-btn').on('click', function(){
+        let exampleFile = $('#examples-selector').val()
+        console.log('Example',exampleFile,'clicked')
+        $.get('examples/'+exampleFile,function(data){
+        console.log('Got example data',data)
+         $('#geophires_text_input_parameters textarea').val(data)
+         setTimeout(function(){
+         $('#geophires_text_input_parameters').submit()
+         mui.tabs.activate('pane-default-3')
+         }, 100)
+        })
+    })
+
+
+    let exampleFiles = [
+        'example1.txt',
+        'example1_outputunits.txt',
+        'example2.txt',
+        'example3.txt',
+        'example4.txt',
+        'example5.txt',
+        'example8.txt',
+        'example9.txt',
+        'example10_HP.txt',
+        'example11_AC.txt',
+        // 'Beckers_et_al_2023_Tabulated_Database_Uloop_sCO2_elec.txt',
+    ]
+
+    for(let e in exampleFiles){
+        let exampleFile = exampleFiles[e]
+        console.log(exampleFile)
+
+        $('#examples-selector').append($('<option value="' + exampleFile + '">' + exampleFile + '</option>'))
+    }
+}
+
 $(document).ready(function () {
     /* break us out of any containing iframes */
     if (top !== self) {
@@ -209,5 +246,8 @@ $(document).ready(function () {
     }
 
     setFormInputParameters(defaultParams)
+
     setAttributesFromDataProperties()
+
+    configureExampleSelector()
 })
