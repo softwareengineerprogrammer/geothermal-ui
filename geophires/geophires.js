@@ -173,7 +173,7 @@ class GeophiresParametersForm {
 class GeophiresTextInputParameters {
     constructor($formElt, onSubmit) {
         $($formElt).append($(`
-            <textarea rows="13"></textarea>
+            <textarea rows="26"></textarea>
             <input type="submit"
             value="Run GEOPHIRES"
              class="mui-btn mui-btn--primary mui-btn--raised" />
