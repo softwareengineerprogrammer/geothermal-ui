@@ -183,7 +183,12 @@ function configureExampleSelector(){
         'example9.txt',
         'example10_HP.txt',
         'example11_AC.txt',
+        'Beckers_et_al_2023_Tabulated_Database_Coaxial_sCO2_heat.txt',
+        // 'Beckers_et_al_2023_Tabulated_Database_Coaxial_water_heat.txt',
         'Beckers_et_al_2023_Tabulated_Database_Uloop_sCO2_elec.txt',
+        'Beckers_et_al_2023_Tabulated_Database_Uloop_sCO2_heat.txt',
+        // 'Beckers_et_al_2023_Tabulated_Database_Uloop_water_elec.txt',
+        // 'Beckers_et_al_2023_Tabulated_Database_Uloop_water_heat.txt',
     ]
 
     for(let e in exampleFiles){
