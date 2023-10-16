@@ -1,20 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <title>Geothermal</title>
+
+
+    <script src="geophires/lib/jquery-3.7.0.min.js"></script>
+
+    <link href="geophires/lib/mui.min.css" rel="stylesheet" type="text/css"/>
+    <script src="geophires/lib/mui.min.js"></script>
+
+    <script type='text/javascript'>
+        $(document).ready(function () {
+            /* break us out of any containing iframes */
+            if (top !== self) {
+                top.location.replace(self.location.href);
+            }
+
+            $('#domain-breadcrumb').html(`<a href="${location.origin}">${location.hostname}</a>`)
+        })
+    </script>
+
+    <style>
+        #domain-breadcrumb {
+            font-size: 15px;
+            opacity: 0.5;
+        }
+    </style>
+
+
 </head>
 <body>
-<p>
-    See:
-<ul>
-    <li>
-        <a href="./explorer">Geothermal Explorer</a>
-    </li>
-    <li>
-        <a href="./geophires">GEOPHIRES demo</a>
-    </li>
-</ul>
-</p>
+
+<div class="mui-container-fluid">
+    <div class="mui-panel">
+
+        <h1 class="mui--text-title">
+            <span id="domain-breadcrumb"></span>
+            <div class="mui-divider"></div>
+            <br/>
+
+            Geothermal
+        </h1>
+
+        <div class="mui--text-body1">
+            <ul>
+                <li><a href='./geophires'>GEOPHIRES UI</a></li>
+                <li><a href='./explorer'>Geothermal Direct-Use Heat Explorer</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>
