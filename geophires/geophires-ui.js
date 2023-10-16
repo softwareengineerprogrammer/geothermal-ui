@@ -96,7 +96,7 @@ function submitForm(oFormElement) {
         if (xhr.status !== 200) {
             let errorMsg = `${xhr.statusText}`
             try {
-                errorMsg += ': ' + JSON.parse(xhr.responseText)['error']
+                errorMsg += `: ${JSON.parse(xhr.responseText)['error']}`
             } catch (e) {
                 console.warn('Unable to extract error from response body', xhr)
             }
@@ -119,8 +119,21 @@ function submitForm(oFormElement) {
 
         for (let resultsKey in resultsDisplayData) {
             let resultsEntry = resultsDisplayData[resultsKey]
-            $(resultsTable).append($(`<thead><tr><th colspan="2">${resultsKey}</th></tr></tr></thead>`))
-            $(resultsTable).append(getTbody(resultsEntry))
+            if(resultsEntry && Reflect.ownKeys(resultsEntry).length){
+                // I'm sure there's a one-liner for this...
+                allNull = true
+                for(let k in resultsEntry){
+                    if(resultsEntry[k] !== null){
+                        allNull = false
+                        break
+                    }
+                }
+
+                if(!allNull){
+                    $(resultsTable).append($(`<thead><tr><th colspan="2">${resultsKey}</th></tr></tr></thead>`))
+                    $(resultsTable).append(getTbody(resultsEntry))
+                }
+            }
         }
 
         $('#results').empty()
@@ -172,6 +185,7 @@ function configureExampleSelector(){
     })
 
 
+    // TODO re-enable commented examples once they are working in Lambda
     let exampleFiles = [
         'example1.txt',
         'example1_outputunits.txt',
