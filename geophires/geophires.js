@@ -213,14 +213,14 @@ class GeophiresTextInputParameters {
 
         let lines = $(this.$textareaElt).val().split('\n')
         for (let l in lines) {
-            let line = lines[l].split(',')
+            let line = lines[l].split('#')[0].split(',')
 
             if (line && line.length >= 2) {
                 let paramName = line[0].trim()
                 let paramValue = parseIfNumber(line[1].trim())
                 params[paramName] = paramValue
             } else {
-                console.log('Skipping text input line:', line)
+                console.log('Skipping text input line:', lines[l])
             }
 
         }
