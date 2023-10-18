@@ -47,7 +47,12 @@
 
         <div class="mui--text-body1">
             <p>
-                HIP RA
+                Heat in Place calculation: Muffler, P., and Raffaele Cataldi.
+                "Methods for regional assessment of geothermal resources."
+                Geothermics 7.2-4 (1978): 53-89.
+                and: Garg, S.K. and J. Combs. 2011. A Reexamination of the USGS Volumetric "Heat in Place" Method.
+                Stanford University, 36th Workshop on Geothermal Reservoir Engineering; SGP-TR-191, 5 pp.
+
             </p>
         </div>
     </div>
@@ -56,8 +61,14 @@
         <div class="mui-row">
             <div class="mui-col-lg-6">
                 <h3>Parameters</h3>
-                <textarea placeholder="Parameters go here">
-                </textarea>
+                <textarea placeholder="Parameters go here"></textarea>
+            </div>
+
+            <div id="results-container" class="mui-col-lg-6">
+                <h3>Result</h3>
+                <span id="loading" class="hidden loader">Running...</span>
+                <div id="results"></div>
+
             </div>
         </div>
     </div>
