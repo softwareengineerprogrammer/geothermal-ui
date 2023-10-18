@@ -1,0 +1,47 @@
+#map {
+    width: 100%;
+    min-height: 420px;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+#geophires_input_parameters, #geophires_text_input_parameters > textarea {
+    width: 100%;
+    font-family: monospace;
+    margin-top: 1em;
+}
+
+.null-value-row {
+    /*color: #d3d3d3;*/
+    display: none;
+}
+
+#geophires-ui {
+    min-height: 625px;
+}
+
+#domain-breadcrumb {
+    font-size: 15px;
+    opacity: 0.5;
+}
+
+a:not([href]) {
+    all: unset;
+}
+
+@keyframes rotating {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.loader::after {
+    content: '\21BB';
+    display: inline-block;
+    animation: rotating 2s linear infinite
+}
