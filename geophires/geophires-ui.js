@@ -178,14 +178,14 @@ function configureExampleSelector(){
         console.log('Got example data',data)
          $('#geophires_text_input_parameters textarea').val(data)
          setTimeout(function(){
-         $('#geophires_text_input_parameters').submit()
-         mui.tabs.activate('pane-default-3')
+            $('#geophires_text_input_parameters').submit()
+            mui.tabs.activate('pane-default-3')
          }, 100)
         })
     })
 
 
-    // TODO re-enable commented examples once they are working in Lambda
+    // FIXME re-enable commented examples once they are working in Lambda
     let exampleFiles = [
         'example1.txt',
         'example1_outputunits.txt',
