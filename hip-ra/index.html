@@ -31,18 +31,14 @@
         }
     </script>
 
-
-    <script type="module" src="hip-ra.js">
-
-    </script>
 </head>
 <body>
 
-<div class="mui-container-fluid">
+<div class="mui-container-fluid" id="app">
     <div class="mui-panel">
 
         <h1 class="mui--text-title">
-            <span id="domain-breadcrumb"></span>
+            <span id="domain-breadcrumb">{{locationHost}}</span>
             <div class="mui-divider"></div>
             <br/>
 
@@ -58,7 +54,11 @@
     <div class="mui-panel">
 
         <div class="mui-row">
-            <div id="app">{{ message }}</div>
+            <div class="mui-col-lg-6">
+                <h3>Parameters</h3>
+                <textarea placeholder="Parameters go here">
+                </textarea>
+            </div>
         </div>
     </div>
     <div class="mui-panel">
@@ -80,6 +80,8 @@
         </p>
     </div>
 </div>
+
+<script type="module" src="hip-ra.js"></script>
 
 </body>
 </html>

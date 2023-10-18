@@ -1,9 +1,13 @@
-import { createApp } from 'vue'
+import { createApp, ref } from 'vue'
+
+function getLocationHost(){
+    return location.hostname
+}
 
 createApp({
     data() {
         return {
-            message: 'HIP RA'
+            locationHost: getLocationHost(),
         }
     }
 }).mount('#app')
