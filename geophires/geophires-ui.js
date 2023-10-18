@@ -219,11 +219,12 @@ $(document).ready(function () {
         top.location.replace(self.location.href);
     }
 
-//    if(location.hostname.indexOf('localhost') != -1){
-//        const prodUrl = 'https://nmgmk2gu5b.execute-api.us-west-2.amazonaws.com/'
-//        const devUrl = 'https://d4nshmdoig.execute-api.us-west-2.amazonaws.com/'
-//        $('form.apiActionForm').attr('action',devUrl)
-//    }
+    if(location.hostname.indexOf('localhost') != -1){
+        const path = 'get-geophires-result'
+        const prodUrl = `https://nmgmk2gu5b.execute-api.us-west-2.amazonaws.com/${path}`
+        const devUrl = `https://d4nshmdoig.execute-api.us-west-2.amazonaws.com/${path}`
+        $('form.apiActionForm').attr('action',devUrl)
+    }
 
     $('#domain-breadcrumb').html(`<a href="${location.origin}">${location.hostname}</a>`)
 
