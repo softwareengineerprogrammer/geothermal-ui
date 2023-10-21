@@ -65,13 +65,29 @@
         <div class="mui-row">
             <div class="mui-col-lg-6">
                 <h3>Parameters</h3>
-                <textarea placeholder="Parameters go here"></textarea>
+                <form @submit.prevent="submitHipRa()">
+                    <textarea
+                            placeholder="Parameters go here"
+                            name="hip_ra_input_parameters"
+                            rows="13"
+                            v-model="hipRaInputText">
+                    </textarea>
+                    <br/>
+                    <!--<input type="button" value="Run HIP RA" @click="submitHipRa()"/>-->
+                    <input type="submit" value="Run HIP RA" />
+                </form>
             </div>
 
             <div id="results-container" class="mui-col-lg-6">
                 <h3>Result</h3>
                 <span id="loading" class="hidden loader">Running...</span>
-                <div id="results"></div>
+                <pre id="results">
+                    {{ hipRaResult }}
+                </pre>
+
+                <div id="error">
+                    {{ errorMessage }}
+                </div>
 
             </div>
         </div>

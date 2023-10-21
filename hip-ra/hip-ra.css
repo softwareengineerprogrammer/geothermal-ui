@@ -1,9 +1,11 @@
-
+#error {
+    color: red;
+}
 .hidden {
     visibility: hidden;
 }
 
-#geophires_input_parameters, #geophires_text_input_parameters > textarea {
+textarea {
     width: 100%;
     font-family: monospace;
     margin-top: 1em;
