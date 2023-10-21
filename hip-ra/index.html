@@ -12,13 +12,13 @@
     <title>HIP RA</title>
 
     <!-- From >https://polyfill.io/v3/polyfill.min.js?features=default -->
-    <script src="lib/polyfill.min.js"></script>
+    <script src="../lib/polyfill.min.js"></script>
 
-    <script src="lib/jquery-3.7.0.min.js"></script>
+    <script src="../lib/jquery-3.7.0.min.js"></script>
 
 
-    <link href="lib/mui.min.css" rel="stylesheet" type="text/css"/>
-    <script src="lib/mui.min.js"></script>
+    <link href="../lib/mui.min.css" rel="stylesheet" type="text/css"/>
+    <script src="../lib/mui.min.js"></script>
 
     <link href="hip-ra.css" rel="stylesheet" type="text/css"/>
 
@@ -26,7 +26,7 @@
     <script type="importmap">
         {
           "imports": {
-            "vue": "./lib/vue.esm-browser.js"
+            "vue": "../lib/vue.esm-browser.js"
           }
         }
     </script>
@@ -38,7 +38,11 @@
     <div class="mui-panel">
 
         <h1 class="mui--text-title">
-            <span id="domain-breadcrumb">{{locationHost}}</span>
+            <span id="domain-breadcrumb">
+                <a :href="locationOrigin">
+                    {{locationHost}}
+                </a>
+            </span>
             <div class="mui-divider"></div>
             <br/>
 
