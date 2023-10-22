@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <google-analytics-tag></google-analytics-tag>
+
+    <!-- Substituted in build -->
+    <!--<geothermal-geophires-base-tag></geothermal-geophires-base-tag>-->
+
+    <title>HIP RA</title>
+
+    <!-- From >https://polyfill.io/v3/polyfill.min.js?features=default -->
+    <script src="../lib/polyfill.min.js"></script>
+
+    <script src="../lib/jquery-3.7.0.min.js"></script>
+
+
+    <link href="../lib/mui.min.css" rel="stylesheet" type="text/css"/>
+    <script src="../lib/mui.min.js"></script>
+
+    <link href="hip-ra.css" rel="stylesheet" type="text/css"/>
+
+
+    <script type="importmap">
+        {
+          "imports": {
+            "vue": "../lib/vue.esm-browser.js"
+          }
+        }
+    </script>
+
+</head>
+<body>
+
+<div class="mui-container-fluid" id="app">
+    <div class="mui-panel">
+
+        <h1 class="mui--text-title">
+            <span id="domain-breadcrumb">
+                <a :href="locationOrigin">
+                    {{locationHost}}
+                </a>
+            </span>
+            <div class="mui-divider"></div>
+            <br/>
+
+            HIP RA
+        </h1>
+
+        <div class="mui--text-body1">
+            <p>
+                Heat in Place calculation: Muffler, P., and Raffaele Cataldi.
+                "Methods for regional assessment of geothermal resources."
+                Geothermics 7.2-4 (1978): 53-89.
+                and: Garg, S.K. and J. Combs. 2011. A Reexamination of the USGS Volumetric "Heat in Place" Method.
+                Stanford University, 36th Workshop on Geothermal Reservoir Engineering; SGP-TR-191, 5 pp.
+
+            </p>
+        </div>
+    </div>
+    <div class="mui-panel">
+
+        <div class="mui-row">
+            <div class="mui-col-lg-6">
+                <h3>Parameters</h3>
+                <form @submit.prevent="submitHipRa()">
+                    <textarea
+                            placeholder="Parameters go here"
+                            name="hip_ra_input_parameters"
+                            rows="13"
+                            v-model="hipRaInputText">
+                    </textarea>
+                    <br/>
+                    <!--<input type="button" value="Run HIP RA" @click="submitHipRa()"/>-->
+                    <input type="submit" value="Run HIP RA" />
+                </form>
+            </div>
+
+            <div id="results-container" class="mui-col-lg-6">
+                <h3>Result</h3>
+                <span id="loading" class="loader" v-if="hipRaLoading">Running...</span>
+                <pre id="results">{{ hipRaResult }}</pre>
+
+                <div id="error">
+                    {{ errorMessage }}
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="mui-panel">
+        <h2><a id="about">About</a></h2>
+
+        <ul>
+            <li>
+                <a href="https://github.com/softwareengineerprogrammer/python-geophires-x-nrel/tree/main/src/hip_ra">
+                    HIP RA on GitHub
+                </a>
+            </li>
+        </ul>
+
+        <p>
+            <a target="_blank"
+               href="https://github.com/softwareengineerprogrammer/geothermal-ui/issues/new?assignees=&labels=feedback&projects=&template=feedback.md&title=HIP+RA+UI+Feedback">
+                <b>Click here to submit feedback</b></a>.
+            Feedback is welcome and appreciated!
+        </p>
+    </div>
+</div>
+
+<script type="module" src="hip-ra.js"></script>
+
+</body>
+</html>
