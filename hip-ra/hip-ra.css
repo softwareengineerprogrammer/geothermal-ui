@@ -8,7 +8,6 @@
 }
 
 textarea {
-    width: 100%;
     font-family: monospace;
     margin-top: 1em;
 }
@@ -16,10 +15,6 @@ textarea {
 .null-value-row {
     /*color: #d3d3d3;*/
     display: none;
-}
-
-#geophires-ui {
-    min-height: 625px;
 }
 
 #domain-breadcrumb {

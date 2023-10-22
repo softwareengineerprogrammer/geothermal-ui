@@ -9,6 +9,7 @@
     <!-- Substituted in build -->
     <geothermal-hip-ra-base-tag></geothermal-hip-ra-base-tag>
 
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
     <title>HIP RA</title>
 
     <!-- From >https://polyfill.io/v3/polyfill.min.js?features=default -->
@@ -71,11 +72,11 @@
                             placeholder="Parameters go here"
                             name="hip_ra_input_parameters"
                             rows="13"
+                            cols="48"
                             v-model="hipRaInputText">
                     </textarea>
                     <br/>
-                    <!--<input type="button" value="Run HIP RA" @click="submitHipRa()"/>-->
-                    <input type="submit" value="Run HIP RA" />
+                    <input type="submit" value="Run HIP RA" class="mui-btn mui-btn--primary mui-btn--raised"/>
                 </form>
             </div>
 
