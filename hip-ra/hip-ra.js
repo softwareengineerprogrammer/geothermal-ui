@@ -29,7 +29,8 @@ Reservoir Life Cycle, 25
 Heat Capacity Of Water, -1
 Density Of Water, -1`),
             hipRaResult: ref('Run HIP RA to get a result'),
-            errorMessage: ref('')
+            errorMessage: ref(''),
+            hipRaLoading: ref(false),
         }
     },
     methods: {
@@ -59,6 +60,7 @@ Density Of Water, -1`),
                 return false
             }
 
+            this.hipRaLoading = true
             fetch(
                 'https://d4nshmdoig.execute-api.us-west-2.amazonaws.com/get-hip-ra-result',
                 {
@@ -69,14 +71,17 @@ Density Of Water, -1`),
                 }
             ).then(response => {
                     console.log('Response:',response)
-                    if(!response.ok){
-                        this.errorMessage = `Error: ${response}`
-                        return false
-                    }
+                    this.hipRaLoading = false
 
                     response.json().then( responseJson => {
                         console.log('Response body:\n',responseJson)
-                        this.hipRaResult = responseJson['caseReportText']
+                        this.hipRaLoading = false
+
+                        if(!response.ok){
+                            this.errorMessage = `Error: ${responseJson['error']}`
+                        } else {
+                            this.hipRaResult = responseJson['caseReportText']
+                        }
                     })
                 })
         }

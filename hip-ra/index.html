@@ -80,7 +80,7 @@
 
             <div id="results-container" class="mui-col-lg-6">
                 <h3>Result</h3>
-                <span id="loading" class="hidden loader">Running...</span>
+                <span id="loading" class="loader" v-if="hipRaLoading">Running...</span>
                 <pre id="results">{{ hipRaResult }}</pre>
 
                 <div id="error">
