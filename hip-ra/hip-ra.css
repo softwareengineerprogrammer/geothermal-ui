@@ -13,10 +13,6 @@ textarea {
     margin-top: 1em;
 }
 
-pre#results {
-    line-height: 10px;
-}
-
 .null-value-row {
     /*color: #d3d3d3;*/
     display: none;
