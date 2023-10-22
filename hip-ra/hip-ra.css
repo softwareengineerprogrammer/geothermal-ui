@@ -1,6 +1,8 @@
 #error {
     color: red;
 }
+
+
 .hidden {
     visibility: hidden;
 }
@@ -9,6 +11,10 @@ textarea {
     width: 100%;
     font-family: monospace;
     margin-top: 1em;
+}
+
+pre#results {
+    line-height: 10px;
 }
 
 .null-value-row {

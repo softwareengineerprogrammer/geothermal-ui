@@ -55,7 +55,7 @@ Density Of Water, -1`),
                 console.log('Parsed params as:',params)
             } catch(e) {
                 console.log('Error parsing params:',e)
-                this.errorMessage = "Failed to parse parameters"
+                this.errorMessage = 'Failed to parse parameters'
                 return false
             }
 
@@ -69,9 +69,14 @@ Density Of Water, -1`),
                 }
             ).then(response => {
                     console.log('Response:',response)
+                    if(!response.ok){
+                        this.errorMessage = `Error: ${response}`
+                        return false
+                    }
+
                     response.json().then( responseJson => {
                         console.log('Response body:\n',responseJson)
-                        this.hipRaResult = responseJson
+                        this.hipRaResult = responseJson['caseReportText']
                     })
                 })
         }
