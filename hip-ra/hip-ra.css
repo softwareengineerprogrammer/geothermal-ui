@@ -12,6 +12,10 @@ textarea {
     margin-top: 1em;
 }
 
+textarea[name=hip_ra_input_parameters] {
+    width: 90%;
+}
+
 .null-value-row {
     /*color: #d3d3d3;*/
     display: none;
