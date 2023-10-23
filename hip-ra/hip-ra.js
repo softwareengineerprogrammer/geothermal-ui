@@ -9,11 +9,6 @@ function getLocationOrigin() {
     return location.origin
 }
 
-function submitHipRa() {
-    console.log('HIP RA submitted')
-}
-
-
 
 createApp({
     data() {
@@ -35,10 +30,6 @@ Density Of Water, -1`),
     },
     methods: {
         submitHipRa() {
-            /*
-            action="https://d4nshmdoig.execute-api.us-west-2.amazonaws.com/get-hip-ra-result"
-            method="POST"
-            */
             this.errorMessage = ''
             this.hipRaResult = ''
 
@@ -53,16 +44,16 @@ Density Of Water, -1`),
                     let value = kv[1].trim()
                     params[name] = value
                 })
-                console.log('Parsed params as:',params)
-            } catch(e) {
-                console.log('Error parsing params:',e)
+                console.log('Parsed params as:', params)
+            } catch (e) {
+                console.log('Error parsing params:', e)
                 this.errorMessage = 'Failed to parse parameters'
                 return false
             }
 
             this.hipRaLoading = true
             let apigId = 'nmgmk2gu5b'
-            if(getLocationHost().indexOf('localhost') != -1){
+            if (getLocationHost().indexOf('localhost') !== -1) {
                 apigId = 'd4nshmdoig'
             }
 
@@ -75,20 +66,20 @@ Density Of Water, -1`),
                     })
                 }
             ).then(response => {
-                    console.log('Response:',response)
+                console.log('Response:', response)
+                this.hipRaLoading = false
+
+                response.json().then(responseJson => {
+                    console.log('Response body:\n', responseJson)
                     this.hipRaLoading = false
 
-                    response.json().then( responseJson => {
-                        console.log('Response body:\n',responseJson)
-                        this.hipRaLoading = false
-
-                        if(!response.ok){
-                            this.errorMessage = `Error: ${responseJson['error']}`
-                        } else {
-                            this.hipRaResult = responseJson['caseReportText']
-                        }
-                    })
+                    if (!response.ok) {
+                        this.errorMessage = `Error: ${responseJson['error']}`
+                    } else {
+                        this.hipRaResult = responseJson['caseReportText']
+                    }
                 })
+            })
         }
     }
 }).mount('#app')
