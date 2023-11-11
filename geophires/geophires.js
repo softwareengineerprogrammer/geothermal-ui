@@ -47,7 +47,9 @@ class GeophiresParametersForm {
             tbl.append($(`
                 <tr>
                     <td>
-                        <label for="${paramName}">${paramName.replaceAll(' ','&nbsp;')}</label>
+                        <label for="${paramName}">${paramName.replaceAll(' ', '&nbsp;')}</label>
+                        <span class="geophires-tooltip"
+                        data-geophires-parameter-name="${paramName}"><sup>&#8505;</sup></span>
                     </td>
                     <td>
                         <input size="8" type="text" name="${paramName}" value="${paramData}"/>
@@ -128,6 +130,9 @@ class GeophiresParametersForm {
 
             $(`.geophires-unit[data-geophires-parameter-name="${propertyName}"]`)
                 .html(prettifyUnits(nullToEmpty(property['units'])))
+
+            $(`.geophires-tooltip[data-geophires-parameter-name="${propertyName}"]`)
+                .attr('title', nullToEmpty(property['description']))
         }
 
         let options = ''

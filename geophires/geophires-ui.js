@@ -219,7 +219,7 @@ $(document).ready(function () {
         top.location.replace(self.location.href);
     }
 
-    if(location.hostname.indexOf('localhost') != -1){
+    if(location.hostname.indexOf('localhost') !== -1){
         const path = 'get-geophires-result'
         const prodUrl = `https://nmgmk2gu5b.execute-api.us-west-2.amazonaws.com/${path}`
         const devUrl = `https://d4nshmdoig.execute-api.us-west-2.amazonaws.com/${path}`
