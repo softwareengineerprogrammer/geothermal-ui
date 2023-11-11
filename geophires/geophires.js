@@ -79,7 +79,7 @@ class GeophiresParametersForm {
                 <td id="add_param_selector" colspan="3" style="max-width: 300px; padding-right: 1em;">
                 </td>
                 <td>
-                    <input type="text" id="add_param_value" placeholder="Parameter Value"/>
+                    <input type="text" id="add_param_value" placeholder="Parameter Value" onkeydown="return event.key !== 'Enter';"/>
                 </td>
                 <td id="selected_param_unit"></td>
                 <td>
