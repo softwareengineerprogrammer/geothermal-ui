@@ -227,8 +227,6 @@ $(document).ready(function () {
         $('form.apiActionForm').attr('action',devUrl)
     }
 
-    $('#domain-breadcrumb').html(`<a href="${location.origin}?ref=geophires-ui">${location.hostname}</a>`)
-
     google.charts.load('current', {'packages': ['corechart']});
 
     GUIDED_PARAMS_FORM = new GeophiresParametersForm(

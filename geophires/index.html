@@ -41,11 +41,15 @@
 </head>
 <body>
 
-<div class="mui-container-fluid">
+<div class="mui-container-fluid" id="app">
     <div class="mui-panel">
 
         <h1 class="mui--text-title">
-            <span id="domain-breadcrumb"></span>
+            <span id="domain-breadcrumb">
+                <a :href="locationOrigin">
+                    {{locationHost}}
+                </a>
+            </span>
             <div class="mui-divider"></div>
             <br/>
 
@@ -179,6 +183,9 @@
         </p>
     </div>
 </div>
+
+<script type="module" src="geophires.vue.js"></script>
+
 
 </body>
 </html>
