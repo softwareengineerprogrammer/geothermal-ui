@@ -196,6 +196,7 @@ function configureExampleSelector(){
         'example9.txt',
         'example10_HP.txt',
         'example11_AC.txt',
+        'example12_DH.txt',
         'Beckers_et_al_2023_Tabulated_Database_Coaxial_sCO2_heat.txt',
         'Beckers_et_al_2023_Tabulated_Database_Coaxial_water_heat.txt',
         'Beckers_et_al_2023_Tabulated_Database_Uloop_sCO2_elec.txt',
@@ -210,7 +211,7 @@ function configureExampleSelector(){
         let exampleFile = exampleFiles[e]
         console.log(exampleFile)
 
-        $('#examples-selector').append($('<option value="' + exampleFile + '">' + exampleFile + '</option>'))
+        $('#examples-selector').append($(`<option value="${exampleFile}">${exampleFile}</option>`))
     }
 }
 
@@ -260,14 +261,14 @@ $(document).ready(function () {
     }
 
     try {
-        console.log('URL hash is:', getUrlHash())
+        console.debug('URL hash is:', getUrlHash())
         let paramsFromHash = new URLSearchParams(getUrlHash()).get('geophires_input_parameters')
-        console.log(`URL hash as search params: ${paramsFromHash}`)
+        console.debug(`URL hash as search params: ${paramsFromHash}`)
         if (paramsFromHash) {
             defaultParams = JSON.parse(paramsFromHash)
         }
     } catch (error) {
-        console.log('Error loading params from URL hash:', error)
+        console.error('Error loading params from URL hash:', error)
     }
 
     setFormInputParameters(defaultParams)
