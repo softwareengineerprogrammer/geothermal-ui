@@ -28,7 +28,7 @@
 }
 
 a:not([href]) {
-    all: unset;
+    color: inherit;
 }
 
 @keyframes rotating {
@@ -48,4 +48,8 @@ a:not([href]) {
 
 .geophires-tooltip {
     cursor: help;
+}
+
+#params-deeplink {
+    font-size: 0.5em;
 }

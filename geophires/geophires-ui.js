@@ -3,6 +3,7 @@ function setLoading(isLoading) {
     if (isLoading) {
         setVisible(loader, true)
         resetGenerationProfileGraphs()
+        setVisible($('#params-deeplink'), false)
     } else {
         setVisible(loader, false)
     }
@@ -140,6 +141,8 @@ function submitForm(oFormElement) {
             .append(resultsTable)
 
         renderGenerationProfileGraphs(resultsData)
+
+        setVisible($('#params-deeplink'), true)
     }
 
     xhr.onerror = function () {
@@ -157,7 +160,10 @@ function submitForm(oFormElement) {
 
     let hashParams = new URLSearchParams()
     hashParams.set('geophires_input_parameters', JSON.stringify(parsed_params))
-    setUrlHash(hashParams.toString())
+    // setUrlHash(hashParams.toString())
+    let url = new URL(location.href)
+    url.hash = btoa(hashParams.toString())
+    $('#params-deeplink').attr('href',url)
 
     return false
 }
@@ -223,9 +229,8 @@ $(document).ready(function () {
 
     if(location.hostname.indexOf('localhost') !== -1){
         const path = 'get-geophires-result'
-        const prodUrl = `https://nmgmk2gu5b.execute-api.us-west-2.amazonaws.com/${path}`
-        const devUrl = `https://d4nshmdoig.execute-api.us-west-2.amazonaws.com/${path}`
-        $('form.apiActionForm').attr('action',devUrl)
+        const url = `https://d4nshmdoig.execute-api.us-west-2.amazonaws.com/${path}`
+        $('form.apiActionForm').attr('action',url)
     }
 
     google.charts.load('current', {'packages': ['corechart']});
