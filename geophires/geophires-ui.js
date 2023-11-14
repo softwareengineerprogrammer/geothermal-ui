@@ -202,10 +202,7 @@ function configureExampleSelector() {
         'example9.txt',
         'example10_HP.txt',
         'example11_AC.txt',
-
-        // FIXME (Examples/cornell_heat_demand.csv)
-        // 'example12_DH.txt',
-
+        'example12_DH.txt',
         'Beckers_et_al_2023_Tabulated_Database_Coaxial_sCO2_heat.txt',
         'Beckers_et_al_2023_Tabulated_Database_Coaxial_water_heat.txt',
         'Beckers_et_al_2023_Tabulated_Database_Uloop_sCO2_elec.txt',
