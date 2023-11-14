@@ -120,17 +120,17 @@ function submitForm(oFormElement) {
 
         for (let resultsKey in resultsDisplayData) {
             let resultsEntry = resultsDisplayData[resultsKey]
-            if(resultsEntry && Reflect.ownKeys(resultsEntry).length){
+            if (resultsEntry && Reflect.ownKeys(resultsEntry).length) {
                 // I'm sure there's a one-liner for this...
                 allNull = true
-                for(let k in resultsEntry){
-                    if(resultsEntry[k] !== null){
+                for (let k in resultsEntry) {
+                    if (resultsEntry[k] !== null) {
                         allNull = false
                         break
                     }
                 }
 
-                if(!allNull){
+                if (!allNull) {
                     $(resultsTable).append($(`<thead><tr><th colspan="2">${resultsKey}</th></tr></tr></thead>`))
                     $(resultsTable).append(getTbody(resultsEntry))
                 }
@@ -163,7 +163,7 @@ function submitForm(oFormElement) {
     // setUrlHash(hashParams.toString())
     let url = new URL(location.href)
     url.hash = btoa(hashParams.toString())
-    $('#params-deeplink').attr('href',url)
+    $('#params-deeplink').attr('href', url)
 
     return false
 }
@@ -176,17 +176,17 @@ function setFormInputParameters(inputParameterObj) {
     TEXT_INPUT_PARAMS_FORM.setInputParameters(inputParameterObj)
 }
 
-function configureExampleSelector(){
-    $('#run-example-btn').on('click', function(){
+function configureExampleSelector() {
+    $('#run-example-btn').on('click', function () {
         let exampleFile = $('#examples-selector').val()
-        console.log('Example',exampleFile,'clicked')
-        $.get('examples/'+exampleFile,function(data){
-        console.log('Got example data',data)
-         $('#geophires_text_input_parameters textarea').val(data)
-         setTimeout(function(){
-            $('#geophires_text_input_parameters').submit()
-            mui.tabs.activate('pane-default-3')
-         }, 100)
+        console.log('Example', exampleFile, 'clicked')
+        $.get('examples/' + exampleFile, function (data) {
+            console.log('Got example data', data)
+            $('#geophires_text_input_parameters textarea').val(data)
+            setTimeout(function () {
+                $('#geophires_text_input_parameters').submit()
+                mui.tabs.activate('pane-default-3')
+            }, 100)
         })
     })
 
@@ -213,7 +213,7 @@ function configureExampleSelector(){
         'example_multiple_gradients.txt'
     ]
 
-    for(let e in exampleFiles){
+    for (let e in exampleFiles) {
         let exampleFile = exampleFiles[e]
         console.log(exampleFile)
 
@@ -227,10 +227,12 @@ $(document).ready(function () {
         top.location.replace(self.location.href);
     }
 
-    if(location.hostname.indexOf('localhost') !== -1){
+    if (location.hostname.indexOf('localhost') !== -1) {
         const path = 'get-geophires-result'
         const url = `https://d4nshmdoig.execute-api.us-west-2.amazonaws.com/${path}`
-        $('form.apiActionForm').attr('action',url)
+        $('form.apiActionForm').attr('action', url)
+
+        setVisible($('#json-input-tab'), true)
     }
 
     google.charts.load('current', {'packages': ['corechart']});
@@ -258,10 +260,10 @@ $(document).ready(function () {
 
 
     let defaultParams = {
-        "Gradient 1": 50,
-        "Reservoir Depth": 3,
-        "End-Use Option": 2,
         "Reservoir Model": 1,
+        "Reservoir Depth": 3,
+        "Gradient 1": 50,
+        "End-Use Option": 2,
         "Time steps per year": 6,
     }
 
