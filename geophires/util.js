@@ -45,15 +45,6 @@ function getTbody(obj) {
     return tbody
 }
 
-function parseIfNumber(maybeNumber) {
-    let parsed = parseFloat(maybeNumber)
-    if (isNaN(parsed)) {
-        return maybeNumber
-    } else {
-        return parsed
-    }
-}
-
 function getUrlHash() {
     return atob(new URL(location.href).hash.replace('#', ''))
 }
