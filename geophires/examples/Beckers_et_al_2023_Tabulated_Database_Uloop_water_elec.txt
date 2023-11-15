@@ -10,9 +10,10 @@ Closed-loop Configuration, 1
 End-Use Option, 1,        -----elec
 Number of Production Wells, 1,      ---- 1 production well accounts for the full configuration - 1 up, one down, and a horizontal section
 Number of Injection Wells, 0,		---- No injectors in a closed uloop
-All-in Vertical Drilling Costs, 1000.0,
-All-in Nonvertical Drilling Costs, 1000.0,
+All-in Vertical Drilling Costs, 1000.0
+All-in Nonvertical Drilling Costs, 1000.0
 Production Flow Rate per Well, 20, ---- kg/s for water / 40 kg/s for sCO2
+Cylindrical Reservoir Input Depth, 3000.0 meter, -----meters
 Reservoir Depth, 3.0, -----kilometers
 Gradient 1, 60.0, ----deg.c/km
 Total Nonvertical Length, 9000, ----- m

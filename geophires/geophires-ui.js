@@ -194,6 +194,7 @@ function configureExampleSelector() {
     let exampleFiles = [
         'example1.txt',
         'example1_outputunits.txt',
+        'example1_addons.txt',
         'example2.txt',
         'example3.txt',
         'example4.txt',
