@@ -90,7 +90,7 @@ function submitForm(oFormElement) {
 
     let xhr = new XMLHttpRequest();
     xhr.onload = function () {
-        console.log('Got response', xhr.responseText, xhr)
+        console.debug('Got response', xhr.responseText, xhr)
         setLoading(false)
 
         let resultsText = ''
@@ -146,7 +146,7 @@ function submitForm(oFormElement) {
     }
 
     xhr.onerror = function () {
-        console.log('xhr onerror triggered', xhr)
+        console.error('xhr onerror triggered', xhr)
         showError('Unexpected GEOPHIRES error - could be caused by invalid GEOPHIRES parameters, i.e. Maximum Temperature > 400')
     }
 
@@ -179,9 +179,9 @@ function setFormInputParameters(inputParameterObj) {
 function configureExampleSelector() {
     $('#run-example-btn').on('click', function () {
         let exampleFile = $('#examples-selector').val()
-        console.log('Example', exampleFile, 'clicked')
+        console.debug('Example', exampleFile, 'clicked')
         $.get('examples/' + exampleFile, function (data) {
-            console.log('Got example data', data)
+            console.debug('Got example data', data)
             $('#geophires_text_input_parameters textarea').val(data)
             setTimeout(function () {
                 $('#geophires_text_input_parameters').submit()
@@ -216,8 +216,6 @@ function configureExampleSelector() {
 
     for (let e in exampleFiles) {
         let exampleFile = exampleFiles[e]
-        console.log(exampleFile)
-
         $('#examples-selector').append($(`<option value="${exampleFile}">${exampleFile}</option>`))
     }
 }

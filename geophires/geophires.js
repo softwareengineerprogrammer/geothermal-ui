@@ -23,7 +23,7 @@ class GeophiresParametersForm {
                 }
             })
 
-            console.log('Constructed params request object:', JSON.stringify(paramsRequest))
+            console.debug('Constructed params request object:', JSON.stringify(paramsRequest))
             onSubmit(paramsRequest)
 
             return false
@@ -112,7 +112,7 @@ class GeophiresParametersForm {
         `)
 
         $.getJSON('geophires-request.json', function (data) {
-            console.log('Got schema JSON:', data)
+            console.debug('Got schema JSON:', data)
             _this._setParameterOptions(data)
         })
     }
@@ -156,7 +156,7 @@ class GeophiresParametersForm {
         $('#add_param_selector select').on('change', function () {
             let selectedParam = JSON.parse($(this).val())
             let selectedParamName = selectedParam['name']
-            console.log('Add param selection', selectedParamName)
+            console.debug('Add param selection', selectedParamName)
             $('#add_param_name').val(selectedParamName)
 
             $('#selected_param_description').html(`
@@ -193,7 +193,7 @@ class GeophiresTextInputParameters {
             let requestParams = {
                 'geophires_input_parameters': _this.getParameters()
             }
-            console.log('text input as params obj', requestParams)
+            console.debug('text input as params obj', requestParams)
             onSubmit(requestParams)
             return false
         })
@@ -230,7 +230,7 @@ class GeophiresTextInputParameters {
                 let paramValue = line[1].trim()
                 params[paramName] = paramValue
             } else {
-                console.log('Skipping text input line:', lines[l])
+                console.debug('Skipping text input line:', lines[l])
             }
 
         }
