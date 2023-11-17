@@ -95,9 +95,12 @@ function submitForm(oFormElement) {
 
         let resultsText = ''
         if (xhr.status !== 200) {
-            let errorMsg = `${xhr.statusText}`
+            let errorMsg = ''
+            if (xhr.statusText) {
+                errorMsg += `${xhr.statusText}: `
+            }
             try {
-                errorMsg += `: ${JSON.parse(xhr.responseText)['error']}`
+                errorMsg += `${JSON.parse(xhr.responseText)['error']}`
             } catch (e) {
                 console.warn('Unable to extract error from response body', xhr)
             }
