@@ -57,32 +57,38 @@ function renderGenerationProfileGraphs(resultsData) {
     );
 
 
-    let heatElectricityExtractionGenerationProfile = resultsData['HEAT AND/OR ELECTRICITY EXTRACTION AND GENERATION PROFILE']
-    let heatElectricityExtractionGenerationProfileChart = new google.visualization.LineChart(
-        document.getElementById('heat-electricity-extraction-generation-profile-chart')
-    );
+    const EXTRACTION_PROFILE_NAME = 'HEAT AND/OR ELECTRICITY EXTRACTION AND GENERATION PROFILE'
+    let extractionProfileChartElt = document.getElementById('heat-electricity-extraction-generation-profile-chart')
+    if(EXTRACTION_PROFILE_NAME in resultsData) {
+        setVisible(extractionProfileChartElt, true)
+        let heatElectricityExtractionGenerationProfile = resultsData[EXTRACTION_PROFILE_NAME]
+        let heatElectricityExtractionGenerationProfileChart = new google.visualization.LineChart(
+            extractionProfileChartElt
+        );
 
-    heatElectricityExtractionGenerationProfileChart.draw(
-        google.visualization.arrayToDataTable(heatElectricityExtractionGenerationProfile),
-        {
-            title: 'HEAT AND/OR ELECTRICITY EXTRACTION AND GENERATION PROFILE',
-            curveType: 'function',
-            legend: {position: 'bottom'},
-            hAxis: {
-                title: 'Year'
-            },
-            series: {
-                // Gives each series an axis name that matches the Y-axis below.
-                3: {targetAxisIndex: 1}
-            },
-            vAxes: {
-                // Adds titles to each axis.
-                0: {title: 'GWh/year; 10^15 J'},
-                1: {title: 'Percent'}
-            },
-        }
-    );
-
+        heatElectricityExtractionGenerationProfileChart.draw(
+            google.visualization.arrayToDataTable(heatElectricityExtractionGenerationProfile),
+            {
+                title: EXTRACTION_PROFILE_NAME,
+                curveType: 'function',
+                legend: {position: 'bottom'},
+                hAxis: {
+                    title: 'Year'
+                },
+                series: {
+                    // Gives each series an axis name that matches the Y-axis below.
+                    3: {targetAxisIndex: 1}
+                },
+                vAxes: {
+                    // Adds titles to each axis.
+                    0: {title: 'GWh/year; 10^15 J'},
+                    1: {title: 'Percent'}
+                },
+            }
+        );
+    } else {
+        setVisible(extractionProfileChartElt, false)
+    }
 }
 
 function submitForm(oFormElement) {
