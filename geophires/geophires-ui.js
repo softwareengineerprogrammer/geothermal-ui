@@ -111,6 +111,16 @@ function renderGenerationProfileGraphs(resultsData) {
                 hAxis: {
                     title: 'Year'
                 },
+                series: {
+                    // Gives each series an axis name that matches the Y-axis below.
+                    0: {targetAxisIndex: 1},
+                    2: {targetAxisIndex: 1},
+                },
+                vAxes: {
+                    // Adds titles to each axis.
+                    0: {title: 'MUSD; MUSD/yr'},
+                    1: {title: 'cents/kWh'}
+                },
             }
         );
     } else {
