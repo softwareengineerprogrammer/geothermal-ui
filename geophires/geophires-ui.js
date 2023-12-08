@@ -24,6 +24,8 @@ function resetGenerationProfileGraphs() {
     setVisible(document.getElementById('generation-profile-graphs'), false)
 }
 
+const CCUS_PROFILE_KEY = 'CCUS PROFILE'
+const EXTENDED_ECONOMICS_PROFILE_KEY = 'EXTENDED ECONOMIC PROFILE'
 function renderGenerationProfileGraphs(resultsData) {
     setVisible(document.getElementById('generation-profile-graphs'), true)
 
@@ -89,6 +91,70 @@ function renderGenerationProfileGraphs(resultsData) {
     } else {
         setVisible(extractionProfileChartElt, false)
     }
+
+    let extendedEconomicsProfileChartElt = document.getElementById('extended-economics-profile-chart')
+    if(EXTENDED_ECONOMICS_PROFILE_KEY in resultsData) {
+        setVisible(extendedEconomicsProfileChartElt, true)
+        let profile = resultsData[EXTENDED_ECONOMICS_PROFILE_KEY]
+        let chart = new google.visualization.LineChart(
+            extendedEconomicsProfileChartElt
+        );
+
+        chart.draw(
+            google.visualization.arrayToDataTable(profile),
+            {
+                title: EXTENDED_ECONOMICS_PROFILE_KEY,
+                curveType: 'function',
+                legend: {position: 'bottom'},
+                hAxis: {
+                    title: 'Year'
+                },
+                series: {
+                    // Gives each series an axis name that matches the Y-axis below.
+                    3: {targetAxisIndex: 1}
+                },
+                // vAxes: {
+                //     // Adds titles to each axis.
+                //     0: {title: 'GWh/year; 10^15 J'},
+                //     1: {title: 'Percent'}
+                // },
+            }
+        );
+    } else {
+        setVisible(extendedEconomicsProfileChartElt, false)
+    }
+
+    let ccusProfileChartElt = document.getElementById('ccus-profile-chart')
+    if(CCUS_PROFILE_KEY in resultsData) {
+        setVisible(ccusProfileChartElt, true)
+        let profile = resultsData[CCUS_PROFILE_KEY]
+        let chart = new google.visualization.LineChart(
+            ccusProfileChartElt
+        );
+
+        chart.draw(
+            google.visualization.arrayToDataTable(profile),
+            {
+                title: CCUS_PROFILE_KEY,
+                curveType: 'function',
+                legend: {position: 'bottom'},
+                hAxis: {
+                    title: 'Year'
+                },
+                series: {
+                    // Gives each series an axis name that matches the Y-axis below.
+                    3: {targetAxisIndex: 1}
+                },
+                // vAxes: {
+                //     // Adds titles to each axis.
+                //     0: {title: 'GWh/year; 10^15 J'},
+                //     1: {title: 'Percent'}
+                // },
+            }
+        );
+    } else {
+        setVisible(ccusProfileChartElt, false)
+    }
 }
 
 function submitForm(oFormElement) {
@@ -126,6 +192,8 @@ function submitForm(oFormElement) {
         let resultsDisplayData = Object.assign({}, resultsData)
         delete resultsDisplayData[powerProfileKey]
         delete resultsDisplayData[extractionProfileKey]
+        delete resultsDisplayData[EXTENDED_ECONOMICS_PROFILE_KEY]
+        delete resultsDisplayData[CCUS_PROFILE_KEY]
 
         for (let resultsKey in resultsDisplayData) {
             let resultsEntry = resultsDisplayData[resultsKey]
