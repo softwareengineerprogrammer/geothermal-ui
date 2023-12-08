@@ -26,10 +26,13 @@ function resetGenerationProfileGraphs() {
 
 const CCUS_PROFILE_KEY = 'CCUS PROFILE'
 const EXTENDED_ECONOMICS_PROFILE_KEY = 'EXTENDED ECONOMIC PROFILE'
+const POWER_PROFILE_KEY = 'POWER GENERATION PROFILE'
+const EXTRACTION_PROFILE_KEY = 'HEAT AND/OR ELECTRICITY EXTRACTION AND GENERATION PROFILE'
+
 function renderGenerationProfileGraphs(resultsData) {
     setVisible(document.getElementById('generation-profile-graphs'), true)
 
-    let powerGenerationProfile = resultsData['POWER GENERATION PROFILE']
+    let powerGenerationProfile = resultsData[POWER_PROFILE_KEY]
 
     let powerGenerationProfileChart = new google.visualization.LineChart(
         document.getElementById('power-generation-profile-chart')
@@ -38,7 +41,7 @@ function renderGenerationProfileGraphs(resultsData) {
     powerGenerationProfileChart.draw(
         google.visualization.arrayToDataTable(powerGenerationProfile),
         {
-            title: 'POWER GENERATION PROFILE',
+            title: POWER_PROFILE_KEY,
             curveType: 'function',
             legend: {position: 'bottom'},
             hAxis: {
@@ -59,11 +62,10 @@ function renderGenerationProfileGraphs(resultsData) {
     );
 
 
-    const EXTRACTION_PROFILE_NAME = 'HEAT AND/OR ELECTRICITY EXTRACTION AND GENERATION PROFILE'
     let extractionProfileChartElt = document.getElementById('heat-electricity-extraction-generation-profile-chart')
-    if(EXTRACTION_PROFILE_NAME in resultsData) {
+    if(EXTRACTION_PROFILE_KEY in resultsData) {
         setVisible(extractionProfileChartElt, true)
-        let heatElectricityExtractionGenerationProfile = resultsData[EXTRACTION_PROFILE_NAME]
+        let heatElectricityExtractionGenerationProfile = resultsData[EXTRACTION_PROFILE_KEY]
         let heatElectricityExtractionGenerationProfileChart = new google.visualization.LineChart(
             extractionProfileChartElt
         );
@@ -71,7 +73,7 @@ function renderGenerationProfileGraphs(resultsData) {
         heatElectricityExtractionGenerationProfileChart.draw(
             google.visualization.arrayToDataTable(heatElectricityExtractionGenerationProfile),
             {
-                title: EXTRACTION_PROFILE_NAME,
+                title: EXTRACTION_PROFILE_KEY,
                 curveType: 'function',
                 legend: {position: 'bottom'},
                 hAxis: {
@@ -109,15 +111,6 @@ function renderGenerationProfileGraphs(resultsData) {
                 hAxis: {
                     title: 'Year'
                 },
-                series: {
-                    // Gives each series an axis name that matches the Y-axis below.
-                    3: {targetAxisIndex: 1}
-                },
-                // vAxes: {
-                //     // Adds titles to each axis.
-                //     0: {title: 'GWh/year; 10^15 J'},
-                //     1: {title: 'Percent'}
-                // },
             }
         );
     } else {
@@ -143,13 +136,19 @@ function renderGenerationProfileGraphs(resultsData) {
                 },
                 series: {
                     // Gives each series an axis name that matches the Y-axis below.
-                    3: {targetAxisIndex: 1}
+                    0: {targetAxisIndex: 1},
+                    1: {targetAxisIndex: 0},
+                    2: {targetAxisIndex: 0},
+                    3: {targetAxisIndex: 0},
+                    4: {targetAxisIndex: 0},
+                    5: {targetAxisIndex: 0},
+                    6: {targetAxisIndex: 0},
+                    7: {targetAxisIndex: 0},
                 },
-                // vAxes: {
-                //     // Adds titles to each axis.
-                //     0: {title: 'GWh/year; 10^15 J'},
-                //     1: {title: 'Percent'}
-                // },
+                vAxes: {
+                    // Adds titles to each axis.
+                    1: {title: 'lbs'}
+                },
             }
         );
     } else {
@@ -186,12 +185,9 @@ function submitForm(oFormElement) {
 
         let resultsData = JSON.parse(resultsText)
 
-        let powerProfileKey = 'POWER GENERATION PROFILE'
-        let extractionProfileKey = 'HEAT AND/OR ELECTRICITY EXTRACTION AND GENERATION PROFILE'
-
         let resultsDisplayData = Object.assign({}, resultsData)
-        delete resultsDisplayData[powerProfileKey]
-        delete resultsDisplayData[extractionProfileKey]
+        delete resultsDisplayData[POWER_PROFILE_KEY]
+        delete resultsDisplayData[EXTRACTION_PROFILE_KEY]
         delete resultsDisplayData[EXTENDED_ECONOMICS_PROFILE_KEY]
         delete resultsDisplayData[CCUS_PROFILE_KEY]
 
