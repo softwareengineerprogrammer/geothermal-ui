@@ -60,10 +60,12 @@ a:not([href]) {
     cursor: help;
 }
 
-#params-deeplink {
+#result-actions {
     font-size: 0.5em;
+    margin-left: 1em;
 }
 
-#download-csv, #download-csv:hover {
+#result-actions a, #result-actions a:hover {
     cursor: pointer;
+    color: #2196F3 !important;
 }

@@ -3,7 +3,7 @@ function setLoading(isLoading) {
     if (isLoading) {
         setVisible(loader, true)
         resetGenerationProfileGraphs()
-        setVisible($('#params-deeplink'), false)
+        setVisible($('#result-actions'), false)
     } else {
         setVisible(loader, false)
     }
@@ -225,7 +225,7 @@ function submitForm(oFormElement) {
 
         renderGenerationProfileGraphs(resultsData)
 
-        setVisible($('#params-deeplink'), true)
+        setVisible($('#result-actions'), true)
     }
 
     xhr.onerror = function () {

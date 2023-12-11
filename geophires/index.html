@@ -150,15 +150,20 @@
                 <h3>
                     Result
 
+                    <span id="result-actions" class="hidden">
                     <a id="params-deeplink"
-                       class="hidden"
-                       title="Right-click to copy a deeplink to the parameters for this result"
-                    >&#128279;</a>
-
+                       title="Right-click to copy a deeplink to the parameters for this result">
+                        <!--&#128279;-->
+                       link
+                    </a>
+                    &nbsp;&centerdot;&nbsp;
                     <a id="download-csv"
                        title="Download result as CSV"
-                       @click="downloadCsv"
-                    >&DownArrowBar;</a>
+                       @click="downloadCsv">
+                        <!--&DownArrowBar;-->
+                       csv
+                    </a>
+                    </span>
 
                 </h3>
                 <span id="loading" class="hidden loader">Running...</span>

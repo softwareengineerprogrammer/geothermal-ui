@@ -17,8 +17,15 @@ createApp({
         }
     },
     methods: {
+        downloadURI: function (uri, name) {
+            let link = document.createElement('a')
+            link.download = name
+            link.href = uri
+            document.body.appendChild(link)
+            link.click()
+            document.body.removeChild(link)
+        },
         downloadCsv: function (event) {
-
             fetch(
                 document.querySelector('#geophires_param_form').getAttribute('action'),
                 {
@@ -30,7 +37,10 @@ createApp({
                 }
             )
                 .then(response => response.json())
-                .then(data => alert(data));
+                .then(data => {
+                    console.debug('CSV download got data:',data)
+                    this.downloadURI(`data:text/csv,${encodeURI(data['csv'])}`, 'geophires-result.csv')
+                });
         }
     }
 }).mount('#app')
