@@ -53,7 +53,8 @@
             <div class="mui-divider"></div>
             <br/>
 
-            <img src="earth-core-logo.png" alt="GEOPHIRES logo" id="header-core-o"/><span class="header-text">GEOPHIRES</span>
+            <img src="earth-core-logo.png" alt="GEOPHIRES logo" id="header-core-o"/><span
+                class="header-text">GEOPHIRES</span>
         </h1>
 
         <div class="mui--text-body1">
@@ -75,7 +76,8 @@
                     href='https://github.com/NREL/python-geophires-x'>github.com/NREL/python-geophires-x</a>.
             </p>
             <p>
-                You may also be interested in the <a href="/geothermal/hip-ra">HIP RA (Heat in Place calculation)</a> tool.
+                You may also be interested in the <a href="/geothermal/hip-ra">HIP RA (Heat in Place calculation)</a>
+                tool.
             </p>
         </div>
     </div>
@@ -86,9 +88,9 @@
 
                 <h3>
                     <sup><a
-                        href="https://softwareengineerprogrammer.github.io/GEOPHIRES-X/parameters.html"
-                        target="_blank"
-                        title="Open Parameters Reference in a separate tab">&#8505;</a>
+                            href="https://softwareengineerprogrammer.github.io/GEOPHIRES-X/parameters.html"
+                            target="_blank"
+                            title="Open Parameters Reference in a separate tab">&#8505;</a>
                     </sup>
 
                     Parameters
@@ -101,7 +103,8 @@
                     <li class="mui--is-active"><a data-mui-toggle="tab" data-mui-controls="pane-default-2">Guided</a>
                     </li>
                     <li><a data-mui-toggle="tab" data-mui-controls="pane-default-3">Text</a></li>
-                    <li><a id="json-input-tab" class="hidden" data-mui-toggle="tab" data-mui-controls="pane-default-4">JSON</a></li>
+                    <li><a id="json-input-tab" class="hidden" data-mui-toggle="tab" data-mui-controls="pane-default-4">JSON</a>
+                    </li>
                 </ul>
                 <div class="mui-tabs__pane" id="pane-default-1">
                     <br/>
@@ -147,10 +150,22 @@
                 <h3>
                     Result
 
+                    <span id="result-actions" class="hidden">
                     <a id="params-deeplink"
-                       class="hidden"
-                       title="Right-click to copy a deeplink to the parameters for this result"
-                    >&#128279;</a>
+                       title="Right-click to copy a deeplink to the parameters for this result">
+                        <!--&#128279;-->
+                       link
+                    </a>
+                    &nbsp;&centerdot;&nbsp;
+                    <a id="download-csv"
+                       title="Download result as CSV"
+                       @click="downloadCsv"
+                        :class="{ loading: isCsvDownloading }">
+                        <!--&DownArrowBar;-->
+                       csv
+                    </a>
+                    </span>
+
                 </h3>
                 <span id="loading" class="hidden loader">Running...</span>
                 <div id="results"></div>

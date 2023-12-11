@@ -3,7 +3,7 @@ function setLoading(isLoading) {
     if (isLoading) {
         setVisible(loader, true)
         resetGenerationProfileGraphs()
-        setVisible($('#params-deeplink'), false)
+        setVisible($('#result-actions'), false)
     } else {
         setVisible(loader, false)
     }
@@ -225,7 +225,7 @@ function submitForm(oFormElement) {
 
         renderGenerationProfileGraphs(resultsData)
 
-        setVisible($('#params-deeplink'), true)
+        setVisible($('#result-actions'), true)
     }
 
     xhr.onerror = function () {
@@ -235,7 +235,8 @@ function submitForm(oFormElement) {
 
     xhr.open(oFormElement.method, oFormElement.getAttribute("action"))
     xhr.send(JSON.stringify({
-        'geophires_input_parameters': parsed_params
+        'geophires_input_parameters': parsed_params,
+        'output_format': 'json'
     }))
 
     setLoading(true)
@@ -247,6 +248,7 @@ function submitForm(oFormElement) {
     let url = new URL(location.href)
     url.hash = btoa(hashParams.toString())
     $('#params-deeplink').attr('href', url)
+    $('#download-csv').attr('data-geophires_input_parameters', JSON.stringify(parsed_params))
 
     return false
 }
