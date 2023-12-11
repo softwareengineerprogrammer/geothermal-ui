@@ -63,3 +63,7 @@ a:not([href]) {
 #params-deeplink {
     font-size: 0.5em;
 }
+
+#download-csv, #download-csv:hover {
+    cursor: pointer;
+}

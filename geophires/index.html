@@ -151,6 +151,12 @@
                        class="hidden"
                        title="Right-click to copy a deeplink to the parameters for this result"
                     >&#128279;</a>
+
+                    <a id="download-csv"
+                       title="Download result as csv"
+                       @click="downloadCsv"
+                    >&DownArrowBar;</a>
+
                 </h3>
                 <span id="loading" class="hidden loader">Running...</span>
                 <div id="results"></div>
