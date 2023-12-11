@@ -159,7 +159,8 @@
                     &nbsp;&centerdot;&nbsp;
                     <a id="download-csv"
                        title="Download result as CSV"
-                       @click="downloadCsv">
+                       @click="downloadCsv"
+                        :class="{ loading: isCsvDownloading }">
                         <!--&DownArrowBar;-->
                        csv
                     </a>

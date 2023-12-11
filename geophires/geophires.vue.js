@@ -13,7 +13,8 @@ createApp({
     data() {
         return {
             locationOrigin: `${getLocationOrigin()}?ref=geophires-ui`,
-            locationHost: getLocationHost()
+            locationHost: getLocationHost(),
+            isCsvDownloading: ref(false)
         }
     },
     methods: {
@@ -26,21 +27,27 @@ createApp({
             document.body.removeChild(link)
         },
         downloadCsv: function (event) {
-            fetch(
-                document.querySelector('#geophires_param_form').getAttribute('action'),
-                {
-                    method: 'POST',
-                    body: JSON.stringify({
-                        geophires_input_parameters: JSON.parse(event.target.dataset.geophires_input_parameters),
-                        output_format: 'csv'
+            if(!this.isCsvDownloading) {
+                this.isCsvDownloading = ref(true)
+                fetch(
+                    document.querySelector('#geophires_param_form').getAttribute('action'),
+                    {
+                        method: 'POST',
+                        body: JSON.stringify({
+                            geophires_input_parameters: JSON.parse(event.target.dataset.geophires_input_parameters),
+                            output_format: 'csv'
+                        })
+                    }
+                )
+                    .then(response => {
+                        this.isCsvDownloading = ref(false)
+                        console.debug('CSV download got response:', response)
+                        return response.json()
                     })
-                }
-            )
-                .then(response => response.json())
-                .then(data => {
-                    console.debug('CSV download got data:',data)
-                    this.downloadURI(`data:text/csv,${encodeURI(data['csv'])}`, 'geophires-result.csv')
-                });
+                    .then(data => {
+                        this.downloadURI(`data:text/csv,${encodeURI(data['csv'])}`, 'geophires-result.csv')
+                    });
+            }
         }
     }
 }).mount('#app')

@@ -69,3 +69,9 @@ a:not([href]) {
     cursor: pointer;
     color: #2196F3 !important;
 }
+
+#download-csv.loading::after {
+    content: '\21BB';
+    display: inline-block;
+    animation: rotating 2s linear infinite
+}
