@@ -17,8 +17,20 @@ createApp({
         }
     },
     methods: {
-        downloadCsv: function(event) {
-            alert(event.target.dataset.geophires_input_parameters)
+        downloadCsv: function (event) {
+
+            fetch(
+                document.querySelector('#geophires_param_form').getAttribute('action'),
+                {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        geophires_input_parameters: JSON.parse(event.target.dataset.geophires_input_parameters),
+                        output_format: 'csv'
+                    })
+                }
+            )
+                .then(response => response.json())
+                .then(data => alert(data));
         }
     }
 }).mount('#app')
