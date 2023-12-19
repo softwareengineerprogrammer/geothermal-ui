@@ -15,6 +15,7 @@
 
 .hidden {
     visibility: hidden;
+    display: none;
 }
 
 #geophires_input_parameters, #geophires_text_input_parameters > textarea {

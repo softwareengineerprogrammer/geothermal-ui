@@ -4,6 +4,7 @@ function setLoading(isLoading) {
         setVisible(loader, true)
         resetGenerationProfileGraphs()
         setVisible($('#result-actions'), false)
+        setVisible($('#result-instructions'), false)
     } else {
         setVisible(loader, false)
     }

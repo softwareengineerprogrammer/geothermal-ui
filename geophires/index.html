@@ -131,9 +131,9 @@
                 <div class="mui-tabs__pane" id="pane-default-4">
                     <form
                             method="POST"
-                            onsubmit="return submitForm(this);"
                             class="apiActionForm"
-                            action="https://nmgmk2gu5b.execute-api.us-west-2.amazonaws.com/get-geophires-result">
+                            action="https://nmgmk2gu5b.execute-api.us-west-2.amazonaws.com/get-geophires-result"
+                            onsubmit="return submitForm(this);">
                     <textarea id="geophires_input_parameters"
                               name="geophires_input_parameters"
                               class="mui-textfield"
@@ -168,6 +168,7 @@
 
                 </h3>
                 <span id="loading" class="hidden loader">Running...</span>
+                <div id="result-instructions">Enter Parameters or select an example, then press Run GEOPHIRES to get a result.</div>
                 <div id="results"></div>
                 <div id="generation-profile-graphs">
                     <div id="power-generation-profile-chart" style="width: 100%; height: 250px"></div>
