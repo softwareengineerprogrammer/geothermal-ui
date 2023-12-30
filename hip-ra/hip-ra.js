@@ -39,6 +39,10 @@ Density Of Water, -1`),
             let params = {}
             try {
                 this.hipRaInputText.split('\n').forEach(it => {
+                    if (it.trim() === '') {
+                        return
+                    }
+
                     let kv = it.trim().split(',')
                     let name = kv[0].trim()
                     let value = kv[1].trim()
