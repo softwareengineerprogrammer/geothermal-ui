@@ -33,8 +33,8 @@ Density Of Water, -1`),
             this.errorMessage = ''
             this.hipRaResult = ''
 
-            console.log('HIP-RA submitted')
-            console.log('HIP-RA input text is:', this.hipRaInputText)
+            console.debug('HIP-RA submitted')
+            console.debug('HIP-RA input text is:', this.hipRaInputText)
 
             let params = {}
             try {
@@ -48,9 +48,9 @@ Density Of Water, -1`),
                     let value = kv[1].trim()
                     params[name] = value
                 })
-                console.log('Parsed params as:', params)
+                console.debug('Parsed params as:', params)
             } catch (e) {
-                console.log('Error parsing params:', e)
+                console.debug('Error parsing params:', e)
                 this.errorMessage = 'Failed to parse parameters'
                 return false
             }
@@ -70,11 +70,11 @@ Density Of Water, -1`),
                     })
                 }
             ).then(response => {
-                console.log('Response:', response)
+                console.debug('Response:', response)
                 this.hipRaLoading = false
 
                 response.json().then(responseJson => {
-                    console.log('Response body:\n', responseJson)
+                    console.debug('Response body:\n', responseJson)
                     this.hipRaLoading = false
 
                     if (!response.ok) {
