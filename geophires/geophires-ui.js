@@ -206,7 +206,7 @@ function submitForm(oFormElement) {
             let resultsEntry = resultsDisplayData[resultsKey]
             if (resultsEntry && Reflect.ownKeys(resultsEntry).length) {
                 // I'm sure there's a one-liner for this...
-                allNull = true
+                let allNull = true
                 for (let k in resultsEntry) {
                     if (resultsEntry[k] !== null) {
                         allNull = false
@@ -278,9 +278,9 @@ function configureExampleSelector() {
 
 
     let exampleFiles = [
+        'example1_addons.txt',
         'example1.txt',
         'example1_outputunits.txt',
-        'example1_addons.txt',
         'example2.txt',
         'example3.txt',
         'example4.txt',
