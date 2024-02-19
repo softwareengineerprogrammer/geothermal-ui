@@ -298,7 +298,8 @@ function configureExampleSelector() {
         'Beckers_et_al_2023_Tabulated_Database_Uloop_water_elec.txt',
         'Beckers_et_al_2023_Tabulated_Database_Uloop_water_heat.txt',
         'SUTRAExample1.txt',
-        'example_multiple_gradients.txt'
+        'example_multiple_gradients.txt',
+        'example_SHR-1.txt',
     ]
 
     for (let e in exampleFiles) {
