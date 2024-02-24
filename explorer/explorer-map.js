@@ -13,8 +13,8 @@ async function initMap() {
     }
 
     const archerDanielMidlandPosition = {
-        lat:	41.42,
-        lng:	-97.29
+        lat: 41.42,
+        lng: -97.29
     }
 
     map = new Map(document.getElementById("map"), {
@@ -151,11 +151,25 @@ initMap().then(async () => {
 
                 $('#results').empty()
                     .append(summaryTable)
-                    //.append(infoTable.clone())
+                    // .append(infoTable.clone())
 
                 resetGenerationProfileGraphs()
             });
 
         }
     });
+
+    let dismissAttempts = 0
+    let gmapDismissWorkaround = function () {
+        let dismissBtn = document.querySelector('#map .dismissButton')
+        dismissAttempts += 1
+        if (dismissBtn) {
+            dismissBtn.click()
+        } else if (dismissAttempts < 69) {
+            setTimeout(gmapDismissWorkaround, 250)
+        } else {
+            console.warn('Failed to find gmap dismiss button after max attempts, giving up')
+        }
+    }
+    setTimeout(gmapDismissWorkaround, 500)
 });
