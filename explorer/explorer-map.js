@@ -26,6 +26,14 @@ async function initMap() {
     });
 }
 
+function getGeophiresWebInterfaceDeeplinkUrl(params) {
+    let hashParams = new URLSearchParams()
+    hashParams.set('geophires_input_parameters', JSON.stringify(params))
+    let url = new URL(`${location.origin}/geothermal/geophires`)
+    url.hash = btoa(hashParams.toString())
+    return url
+}
+
 initMap().then(async () => {
 
     const {
@@ -149,22 +157,20 @@ initMap().then(async () => {
                 $(summaryTable).append($(`<thead><tr><th colspan='2'>PRE-CACLULATED FACILITY RESULTS: ${facilityName}</th></tr></thead>`))
                 $(summaryTable).append(getTbody(facilityData.geophires_summary))
 
-
-                // WIP...
-                /*
-                'End-Use Option': EndUseOption.DIRECT_USE_HEAT.value,
-                'Reservoir Model': 1,
-                'Time steps per year': 6,
-                'Reservoir Depth': 3,
-                'Gradient 1': temp_gradient,
-                 */
-                // let geophiresDeeplinkHash = 'abc'
-                // let geophiresDeeplink = `/geothermal/geophires#${geophiresDeeplinkHash}`
-
+                let geophiresParams = {
+                    'End-Use Option': 2,
+                    'Reservoir Depth': 3,
+                    'Gradient 1': facilityData['gradient_degC_per_km'],
+                    'Reservoir Model': 1,
+                    'Time steps per year': 6,
+                }
                 $('#results').empty()
                     .append(summaryTable)
                     //.append(infoTable.clone())
-                    //.append($(`<a href='${geophiresDeeplink}'>geophires</a>`))
+                    .append(
+                        $(`<a href='${getGeophiresWebInterfaceDeeplinkUrl(geophiresParams)}' target="_blank">
+Click here to start your own GEOPHIRES analysis with the estimated gradient at this facility location</a>`)
+                    )
 
                 resetGenerationProfileGraphs()
             });
