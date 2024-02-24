@@ -21,7 +21,7 @@
     min-height: 625px;
 }
 
-#domain-breadcrumb {
+.path-breadcrumb {
     font-size: 15px;
     opacity: 0.5;
 }
