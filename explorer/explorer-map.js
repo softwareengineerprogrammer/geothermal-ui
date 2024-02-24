@@ -149,9 +149,22 @@ initMap().then(async () => {
                 $(summaryTable).append($(`<thead><tr><th colspan='2'>PRE-CACLULATED FACILITY RESULTS: ${facilityName}</th></tr></thead>`))
                 $(summaryTable).append(getTbody(facilityData.geophires_summary))
 
+
+                // WIP...
+                /*
+                'End-Use Option': EndUseOption.DIRECT_USE_HEAT.value,
+                'Reservoir Model': 1,
+                'Time steps per year': 6,
+                'Reservoir Depth': 3,
+                'Gradient 1': temp_gradient,
+                 */
+                // let geophiresDeeplinkHash = 'abc'
+                // let geophiresDeeplink = `/geothermal/geophires#${geophiresDeeplinkHash}`
+
                 $('#results').empty()
                     .append(summaryTable)
-                    // .append(infoTable.clone())
+                    //.append(infoTable.clone())
+                    //.append($(`<a href='${geophiresDeeplink}'>geophires</a>`))
 
                 resetGenerationProfileGraphs()
             });

@@ -67,6 +67,14 @@ function setUrlHash(urlHash) {
 function setVisible(elt, isVisible) {
     if (isVisible) {
         $(elt).removeClass('hidden')
+        try {
+            console.debug($(elt).css('display'))
+            if($(elt).css('display') === 'none'){
+                $(elt).css('display', '')
+            }
+        }catch (e) {
+            console.warn('Error checking display property', e)
+        }
     } else {
         $(elt).addClass('hidden')
     }
