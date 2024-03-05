@@ -300,6 +300,9 @@ function configureExampleSelector() {
         'SUTRAExample1.txt',
         'example_multiple_gradients.txt',
         'example_SHR-1.txt',
+        'example_SHR-2.txt',
+        'S-DAC-GT.txt',
+        'Wanju_Yuan_Closed-Loop_Geothermal_Energy_Recovery.txt',
     ]
 
     for (let e in exampleFiles) {
