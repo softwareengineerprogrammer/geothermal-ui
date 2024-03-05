@@ -171,10 +171,6 @@ function renderGenerationProfileGraphs(resultsData) {
 }
 
 function renderRevenueAndCashflowProfile(resultsData) {
-    // FIXME TODO WIP
-    console.debug('Skipping revenue & cashflow profile render until units are fixed')
-    return
-
     let profileChartElt = document.getElementById('revenue-and-cashflow-profile-chart')
     if(REVENUE_AND_CASHFLOW_PROFILE_KEY in resultsData) {
         setVisible(profileChartElt, true)
