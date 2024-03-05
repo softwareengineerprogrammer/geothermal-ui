@@ -27,6 +27,7 @@ function resetGenerationProfileGraphs() {
 
 const CCUS_PROFILE_KEY = 'CCUS PROFILE'
 const EXTENDED_ECONOMICS_PROFILE_KEY = 'EXTENDED ECONOMIC PROFILE'
+const REVENUE_AND_CASHFLOW_PROFILE_KEY = 'REVENUE & CASHFLOW PROFILE'
 const POWER_PROFILE_KEY = 'POWER GENERATION PROFILE'
 const EXTRACTION_PROFILE_KEY = 'HEAT AND/OR ELECTRICITY EXTRACTION AND GENERATION PROFILE'
 
@@ -94,6 +95,8 @@ function renderGenerationProfileGraphs(resultsData) {
     } else {
         setVisible(extractionProfileChartElt, false)
     }
+
+    renderRevenueAndCashflowProfile(resultsData)
 
     let extendedEconomicsProfileChartElt = document.getElementById('extended-economics-profile-chart')
     if(EXTENDED_ECONOMICS_PROFILE_KEY in resultsData) {
@@ -167,6 +170,47 @@ function renderGenerationProfileGraphs(resultsData) {
     }
 }
 
+function renderRevenueAndCashflowProfile(resultsData) {
+    // FIXME TODO WIP
+    console.debug('Skipping revenue & cashflow profile render until units are fixed')
+    return
+
+    let profileChartElt = document.getElementById('revenue-and-cashflow-profile-chart')
+    if(REVENUE_AND_CASHFLOW_PROFILE_KEY in resultsData) {
+        setVisible(profileChartElt, true)
+        let profile = resultsData[REVENUE_AND_CASHFLOW_PROFILE_KEY]
+        let chart = new google.visualization.LineChart(
+            profileChartElt
+        );
+
+        chart.draw(
+            google.visualization.arrayToDataTable(profile),
+            {
+                title: REVENUE_AND_CASHFLOW_PROFILE_KEY,
+                curveType: 'function',
+                legend: {position: 'bottom'},
+                hAxis: {
+                    title: 'Year'
+                },
+                series: {
+                    // Gives each series an axis name that matches the Y-axis below.
+                    0: {targetAxisIndex: 1}, // LCOE
+                    3: {targetAxisIndex: 1}, // LCOH
+                    6: {targetAxisIndex: 1}, // LCOC
+                },
+                vAxes: {
+                    // Adds titles to each axis.
+                    0: {title: 'MUSD; MUSD/yr'},
+                    1: {title: 'cents/kWh'}
+                },
+            }
+        );
+    } else {
+        setVisible(profileChartElt, false)
+    }
+
+}
+
 function submitForm(oFormElement) {
     let parsed_params = JSON.parse(oFormElement.querySelector('textarea[name="geophires_input_parameters"]').value)
 
@@ -199,6 +243,7 @@ function submitForm(oFormElement) {
         let resultsDisplayData = Object.assign({}, resultsData)
         delete resultsDisplayData[POWER_PROFILE_KEY]
         delete resultsDisplayData[EXTRACTION_PROFILE_KEY]
+        delete resultsDisplayData[REVENUE_AND_CASHFLOW_PROFILE_KEY]
         delete resultsDisplayData[EXTENDED_ECONOMICS_PROFILE_KEY]
         delete resultsDisplayData[CCUS_PROFILE_KEY]
 
