@@ -23,7 +23,7 @@ Reservoir Thickness, 0.25
 Reservoir Life Cycle, 25
 Heat Capacity Of Water, -1
 Density Of Water, -1`),
-            hipRaResult: ref('Run HIP-RA to get a result'),
+            hipRaResult: ref('Run HIP-RA-X to get a result'),
             errorMessage: ref(''),
             hipRaLoading: ref(false),
         }
