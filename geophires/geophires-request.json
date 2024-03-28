@@ -73,7 +73,7 @@
     "Gradient 1": {
       "description": "Geothermal gradient 1 in rock segment 1",
       "type": "number",
-      "units": "degC/m",
+      "units": "degC/km",
       "category": "Reservoir"
     },
     "Gradient 2": {
