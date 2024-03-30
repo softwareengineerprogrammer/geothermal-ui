@@ -360,7 +360,7 @@ $(document).ready(function () {
 
     if (location.hostname.indexOf('localhost') !== -1) {
         const path = 'get-geophires-result'
-        const url = `https://d4nshmdoig.execute-api.us-west-2.amazonaws.com/${path}`
+        const url = `https://dev.gt1.scientificweb.services/${path}`
         $('form.apiActionForm').attr('action', url)
 
         setVisible($('#json-input-tab'), true)

@@ -56,13 +56,13 @@ Density Of Water, -1`),
             }
 
             this.hipRaLoading = true
-            let apigId = 'nmgmk2gu5b'
+            let stageName = 'prod'
             if (getLocationHost().indexOf('localhost') !== -1) {
-                apigId = 'd4nshmdoig'
+                stageName = 'dev'
             }
 
             fetch(
-                `https://${apigId}.execute-api.us-west-2.amazonaws.com/get-hip-ra-result`,
+                `https://${stageName}.gt1.scientificweb.services/get-hip-ra-result`,
                 {
                     method: 'POST',
                     body: JSON.stringify({
