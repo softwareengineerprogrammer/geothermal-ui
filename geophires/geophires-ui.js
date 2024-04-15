@@ -344,6 +344,8 @@ function configureExampleSelector() {
         'example_SHR-2.txt',
         'S-DAC-GT.txt',
         'Wanju_Yuan_Closed-Loop_Geothermal_Energy_Recovery.txt',
+        'example_ITC.txt',
+        'example_PTC.txt',
     ]
 
     for (let e in exampleFiles) {
