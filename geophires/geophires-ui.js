@@ -272,7 +272,7 @@ function submitForm(oFormElement) {
 
     xhr.onerror = function () {
         console.error('xhr onerror triggered', xhr)
-        showError('Unexpected GEOPHIRES error - could be caused by invalid GEOPHIRES parameters, i.e. Maximum Temperature > 400')
+        showError('Unexpected GEOPHIRES error - please <a href="https://github.com/softwareengineerprogrammer/geothermal-ui/issues/new?assignees=&labels=feedback&projects=&template=feedback.md&title=GEOPHIRES+UI+Error" target="_blank">submit an issue here</a> to get help.')
     }
 
     xhr.open(oFormElement.method, oFormElement.getAttribute("action"))
