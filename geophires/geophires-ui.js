@@ -207,6 +207,8 @@ function renderRevenueAndCashflowProfile(resultsData) {
 
 }
 
+let _UI_KEY = 'RONSrTE7Es7iIJ2D9S2Xn3e49vCXV1Sl7FFi3kaU'
+
 function submitForm(oFormElement) {
     let parsed_params = JSON.parse(oFormElement.querySelector('textarea[name="geophires_input_parameters"]').value)
 
@@ -276,6 +278,7 @@ function submitForm(oFormElement) {
     }
 
     xhr.open(oFormElement.method, oFormElement.getAttribute("action"))
+    xhr.setRequestHeader('x-api-key', _UI_KEY);
     xhr.send(JSON.stringify({
         'geophires_input_parameters': parsed_params,
         'output_format': 'json'
@@ -362,7 +365,8 @@ $(document).ready(function () {
 
     if (location.hostname.indexOf('localhost') !== -1) {
         const path = 'get-geophires-result'
-        const url = `https://dev.gt1.scientificweb.services/${path}`
+        const url = `https://dev.gtp.scientificweb.services/${path}`
+        _UI_KEY = 'dQz4mnNwyF68ho47m0biA2Q7mEt5Ub1Q2SV9ezhc'
         $('form.apiActionForm').attr('action', url)
 
         setVisible($('#json-input-tab'), true)
