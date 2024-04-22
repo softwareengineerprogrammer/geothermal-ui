@@ -33,6 +33,9 @@ createApp({
                     document.querySelector('#geophires_param_form').getAttribute('action'),
                     {
                         method: 'POST',
+                        headers: {
+                            'x-api-key': _UI_KEY,
+                        },
                         body: JSON.stringify({
                             geophires_input_parameters: JSON.parse(event.target.dataset.geophires_input_parameters),
                             output_format: 'csv'
