@@ -12,6 +12,17 @@
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <title>GEOPHIRES</title>
 
+    <script type="text/javascript">
+        if (location.search.indexOf('noredirect=true') === -1) {
+            let redirect = atob("aHR0cHM6Ly9zY2llbnRpZmljd2Vic2VydmljZXMuY29tL3Rvb2xzL2dlb3BoaXJlcy8=")
+            if (location.hash) {
+                redirect += location.hash
+            }
+            location.href = redirect
+        }
+    </script>
+
+
     <!-- From >https://polyfill.io/v3/polyfill.min.js?features=default -->
     <script src="../lib/polyfill.min.js"></script>
 
