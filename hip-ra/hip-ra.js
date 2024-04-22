@@ -56,15 +56,19 @@ Density Of Water, -1`),
             }
 
             this.hipRaLoading = true
-            let stageName = 'prod'
+            let urlSubdomainForStage = 'api'
             if (getLocationHost().indexOf('localhost') !== -1) {
-                stageName = 'dev'
+                urlSubdomainForStage = 'dev'
+                _UI_KEY = _DEV_UI_KEY
             }
 
             fetch(
-                `https://${stageName}.gt1.scientificweb.services/get-hip-ra-result`,
+                `https://${urlSubdomainForStage}.gtp.scientificweb.services/get-hip-ra-result`,
                 {
                     method: 'POST',
+                    headers: {
+                        'x-api-key': _UI_KEY
+                    },
                     body: JSON.stringify({
                         hip_ra_input_parameters: params
                     })
