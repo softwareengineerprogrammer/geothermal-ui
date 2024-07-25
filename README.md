@@ -1,8 +1,13 @@
 # Geothermal UI
 
-Web UI for GEOPHIRES & HIP-RA, as referenced in https://github.com/NREL/GEOPHIRES-X?tab=readme-ov-file#web-interface.
+This is the issue tracking repository for the GEOPHIRES & HIP-RA web interfaces, as referenced in [the GEOPHIRES README](https://github.com/NREL/GEOPHIRES-X?tab=readme-ov-file#web-interface).
 
-Available at https://scientificwebservices.com/tools/geophires/, also accessible via https://bit.ly/GEOPHIRES
+The GEOPHIRES web interface is available at https://gtp.scientificwebservices.com/geophires/, also accessible via https://bit.ly/geophires
 
-Note: as of 2024-05-09, the source deployed at https://scientificwebservices.com/tools/geophires/ has diverged from this repository.
-It is undecided whether this repository will be kept in sync in the long-term; in either case, this repository will remain available for reference and filing/tracking issues.
+The HIP-RA web interface is available at https://gtp.scientificwebservices.com/hip-ra/.
+
+---
+
+Note: the source code in this repository is deprecated and is no longer the version used for the web interfaces.
+This repository now exists solely as an issue tracking and feedback collection mechanism for UI-specific concerns related to [NREL/GEOPHIRES](https://github.com/NREL/GEOPHIRES-X) and [SWS GTP](https://gtp.scientificwebservices.com/).
+Contact [@softwareengineerprogrammer](https://github.com/softwareengineerprogrammer) for further information. 
