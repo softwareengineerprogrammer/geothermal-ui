@@ -29,7 +29,8 @@ async function initMap() {
 function getGeophiresWebInterfaceDeeplinkUrl(params) {
     let hashParams = new URLSearchParams()
     hashParams.set('geophires_input_parameters', JSON.stringify(params))
-    let url = new URL(`${location.origin}/geothermal/geophires`)
+    //let url = new URL(`${location.origin}/geothermal/geophires?noredirect`)
+    let url = new URL(`https://scientificwebservices.com/tools/geophires?noredirect`)
     url.hash = btoa(hashParams.toString())
     return url
 }
