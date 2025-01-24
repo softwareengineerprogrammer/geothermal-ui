@@ -26,12 +26,18 @@ async function initMap() {
     });
 }
 
+export function objectToUrlParam(obj) {
+    return encodeURIComponent(btoa(JSON.stringify(obj)));
+}
+
+
 function getGeophiresWebInterfaceDeeplinkUrl(params) {
-    let hashParams = new URLSearchParams()
-    hashParams.set('geophires_input_parameters', JSON.stringify(params))
+    //let hashParams = new URLSearchParams()
+    //hashParams.set('geophires-parameters', JSON.stringify(params))
+    let queryParams = objectToUrlParam(params)
     //let url = new URL(`${location.origin}/geothermal/geophires?noredirect`)
-    let url = new URL(`https://scientificwebservices.com/tools/geophires?noredirect`)
-    url.hash = btoa(hashParams.toString())
+    let url = new URL(`https://gtp.scientificwebservices.com/geophires?geophires-parameters=${queryParams}`)
+    //url.hash = btoa(hashParams.toString())
     return url
 }
 
