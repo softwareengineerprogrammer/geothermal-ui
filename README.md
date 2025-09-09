@@ -8,6 +8,6 @@ The HIP-RA web interface is available at https://gtp.scientificwebservices.com/h
 
 ---
 
-Note: the source code in this repository is deprecated and is no longer the version used for the web interfaces.
+Note: source code in this repository is deprecated and is no longer the version used for the web interfaces.
 This repository now exists solely as an issue tracking and feedback collection mechanism for UI-specific concerns related to [NREL/GEOPHIRES](https://github.com/NREL/GEOPHIRES-X) and [SWS GTP](https://gtp.scientificwebservices.com/).
 Contact [@softwareengineerprogrammer](https://github.com/softwareengineerprogrammer) for further information. 
