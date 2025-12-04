@@ -1,4 +1,6 @@
-# Geothermal UI
+# Geothermal UI Issue Tracking
+
+ℹ️ **See [Issues](https://github.com/softwareengineerprogrammer/geothermal-ui/issues) for issue tracking.**
 
 This is the issue tracking repository for the GEOPHIRES & HIP-RA web interfaces, as referenced in [the GEOPHIRES README](https://github.com/NREL/GEOPHIRES-X?tab=readme-ov-file#web-interface).
 
