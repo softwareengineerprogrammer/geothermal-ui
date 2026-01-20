@@ -1,4 +1,4 @@
-# Geothermal UI Issue Tracking
+# Geothermal UI Issue Tracking \[GEOPHIRES Web Interface on SWS Geothermal Platform\]
 
 ℹ️ **See [Issues](https://github.com/softwareengineerprogrammer/geothermal-ui/issues) for issue tracking.**
 
@@ -7,9 +7,3 @@ This is the issue tracking repository for the GEOPHIRES & HIP-RA web interfaces,
 The GEOPHIRES web interface is available at https://gtp.scientificwebservices.com/geophires. It is also accessible via https://bit.ly/geophires
 
 The HIP-RA web interface is available at https://gtp.scientificwebservices.com/hip-ra.
-
----
-
-Note: source code in this repository is deprecated and is no longer the version used for the web interfaces.
-This repository now exists solely as an issue tracking and feedback collection mechanism for UI-specific concerns related to [NREL/GEOPHIRES](https://github.com/NREL/GEOPHIRES-X) and [SWS GTP](https://gtp.scientificwebservices.com/).
-Contact [@softwareengineerprogrammer](https://github.com/softwareengineerprogrammer) for further information. 
